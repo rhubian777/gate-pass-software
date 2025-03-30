@@ -1,0 +1,268 @@
+body {
+  font-family: Arial, sans-serif;
+  background: url("../logos/PU_image.jpg") no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+/* Top logo 8 */
+.top-centerlogo {
+  display: block;
+  margin: 0 auto; 
+  width: 250px; 
+  height: auto; 
+}
+
+/* Menu  */
+.menu {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.menu-icon {
+  font-size: 32px;
+  cursor: pointer;
+  background-color: #2e7d32; /* Dark Green */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.menu-icon:hover {
+  background-color: #388e3c; /* Slightly lighter green */
+}
+
+/* Containers */
+.container {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  color: black;
+}
+
+/* Student Details */
+.student-container {
+  background-color: green;
+  padding: 15px;
+  color: white;
+  border-radius: 15px;
+  width: 50%;
+  margin: 10px auto;
+}
+
+/* Initially hide the logs container */
+.log-container {
+  display: none;
+  background-color: green;
+  border-radius: 10px;
+  width: 70%;
+  margin: 20px auto;
+  padding: 20px;
+  overflow-x: auto;
+}
+/* Scan Logs */
+.log-container {
+  background-color: green;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 10px;
+  display: none; /* Hidden by default, toggled with button */
+  overflow-x: auto; /* Enable scroll if content overflows */
+}
+
+.log-title {
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* Prevent table from shrinking too much */
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+  background-color: white;
+  color: black;
+}
+
+@media screen and (max-width: 768px) {
+  table {
+    font-size: 12px;
+    min-width: 100%;
+  }
+
+  th, td {
+    padding: 6px;
+  }
+}
+
+button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: darkblue;
+  transform: scale(1.05);
+}
+
+/* View Logs Button - Centered */
+.log-btn {
+  display: block;
+  margin: 20px auto;
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Hidden initially */
+  width: 250px;
+  height: 100%;
+  background: #82c585; 
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: 0.4s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+/* Show Sidebar */
+.sidebar.show {
+  left: 0;
+}
+
+/* Sidebar Logo */
+.sidebar-logo {
+  width: 100px; /* Adjust size as needed */
+  height: auto;
+  margin-bottom: 20px; /* Spacing below the logo */
+  margin-top: -10px;
+}
+
+/* Menu Container */
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Sidebar Buttons */
+.sidebar button {
+  background: #388E3C; /* Medium Green */
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.sidebar button:hover {
+  background: #1B5E20;
+}
+
+/* Menu Button ☰ */
+#menu-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  padding: 10px;
+}
+
+/* Add Student Page Styles */
+.add-student-container {
+  width: 350px;
+  background: #50c85a; /* Light Green */
+  padding: 20px;
+  margin: 50px auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.add-student-container h2 {
+  color: #000000; /* Dark Green */
+  margin-bottom: 15px;
+}
+
+.add-student-container label {
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  color: #000000;
+  margin-top: 10px;
+}
+
+.add-student-container input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 10px;
+  background: #108318;
+  color: white;
+  border: 2px solid gray; /* Gray Border */
+  border-radius: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.register-btn:hover {
+  background: #145A32; /* Darker Green */
+}
+
+.back-btn {
+  width: 100%;
+  padding: 10px;
+  background: gray;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: darkgray;
+}
