@@ -1,4 +1,4 @@
-<?php include("../rfid/db_connect.php"); 
+<?php include("../rfid/db_connect.php");
 
 // Fetch all students from the database
 $sql = "SELECT student_id, name, card_uid FROM students";
@@ -17,7 +17,7 @@ if (!$result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Management</title>
     <style>
-        /* Improved CSS */
+        /* CSS remains the same */
         * {
             margin: 0;
             padding: 0;
@@ -26,7 +26,7 @@ if (!$result) {
         }
         
         body {
-            background-color: #f5f5f5;
+            background-color: #008B8B;
             padding: 20px;
         }
         
@@ -101,20 +101,22 @@ if (!$result) {
         }
         
         .back-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #2196f3;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            font-weight: 500;
-        }
-        
-        .back-btn:hover {
-            background-color: #0b7dda;
-        }
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #2196f3;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-weight: 500;
+    }
+
+    .back-btn:hover {
+        background-color: #03C03C;
+    }
+
         
         /* Modal Styles */
         .modal {
@@ -251,7 +253,7 @@ if (!$result) {
                                 <td><?= htmlspecialchars($row['name']) ?></td>
                                 <td><?= htmlspecialchars($row['card_uid']) ?></td>
                                 <td>
-                                    <button class="btn edit-btn" onclick="openEditModal('<?= htmlspecialchars($row['student_id']) ?>', '<?= htmlspecialchars($row['name']) ?>', '<?= htmlspecialchars($row['card_uid']) ?>')">Edit</button>
+                                    <button class="btn edit-btn" onclick="openEditModal('<?= htmlspecialchars($row['student_id']) ?>', '<?= htmlspecialchars(addslashes($row['name'])) ?>', '<?= htmlspecialchars($row['card_uid']) ?>')">Edit</button>
                                     <button class="btn delete-btn" onclick="deleteStudent('<?= htmlspecialchars($row['student_id']) ?>')">Delete</button>
                                 </td>
                             </tr>
@@ -305,42 +307,70 @@ if (!$result) {
                     const originalContent = actionCell.innerHTML;
                     actionCell.innerHTML = '<div class="loader"></div> Deleting...';
                     
-                    // Perform the deletion
-                    fetch("delaction.php", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/x-www-form-urlencoded"
-                        },
-                        body: "student_id=" + encodeURIComponent(studentId)
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Server returned status " + response.status);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log("Server response:", data);
-                        if (data.success) {
-                            // Success - remove the row with animation
-                            row.style.transition = "opacity 0.5s";
-                            row.style.opacity = "0";
-                            setTimeout(() => {
-                                row.remove();
-                                showStatusMessage("Student deleted successfully!", "success");
-                            }, 500);
+                    // Simple form approach instead of fetch for better compatibility
+                    const form = new FormData();
+                    form.append("student_id", studentId);
+                    
+                    // Create a new XMLHttpRequest
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("POST", "delaction.php", true);
+                    
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            console.log("Server response:", xhr.responseText);
+                            
+                            try {
+                                // Try to parse the response as JSON
+                                const response = JSON.parse(xhr.responseText);
+                                
+                                if (response.success) {
+                                    // Success - remove the row with animation
+                                    row.style.transition = "opacity 0.5s";
+                                    row.style.opacity = "0";
+                                    setTimeout(() => {
+                                        row.remove();
+                                        showStatusMessage("Student deleted successfully!", "success");
+                                    }, 500);
+                                } else {
+                                    // Error - restore the row and show error
+                                    actionCell.innerHTML = originalContent;
+                                    showStatusMessage("Error: " + (response.error || "Unknown error"), "error");
+                                }
+                            } catch (e) {
+                                console.error("Failed to parse JSON:", xhr.responseText);
+                                actionCell.innerHTML = originalContent;
+                                showStatusMessage("Error: Invalid server response. Please try again.", "error");
+                                
+                                // Refresh the page as a fallback
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 2000);
+                            }
                         } else {
-                            // Error - restore the row and show error
+                            // HTTP error
                             actionCell.innerHTML = originalContent;
-                            showStatusMessage("Error: " + data.error, "error");
+                            showStatusMessage("Server error: " + xhr.status, "error");
+                            
+                            // Refresh the page as a fallback
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
                         }
-                    })
-                    .catch(error => {
-                        console.error("Fetch error:", error);
-                        // Restore the row content
+                    };
+                    
+                    xhr.onerror = function() {
+                        console.error("Network error");
                         actionCell.innerHTML = originalContent;
-                        showStatusMessage("Network error occurred. Please try again.", "error");
-                    });
+                        showStatusMessage("Network error occurred. The action may have completed. Refreshing page...", "error");
+                        
+                        // Refresh the page as a fallback
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                    };
+                    
+                    // Send the request
+                    xhr.send(form);
                 }
             }
         }
@@ -391,55 +421,88 @@ if (!$result) {
             updateButton.innerHTML = '<div class="loader"></div> Updating...';
             updateButton.disabled = true;
             
-            // Prepare form data
+            // Create a form data object
             const formData = new FormData();
             formData.append("student_id", studentId);
             formData.append("name", name);
             formData.append("card_uid", cardUid);
             
-            // Send data to server
-            fetch("edit_student.php", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Server returned status " + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
+            // Use XMLHttpRequest instead of fetch
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "edit_student.php", true);
+            
+            xhr.onload = function() {
                 // Restore button state
                 updateButton.innerHTML = originalButtonText;
                 updateButton.disabled = false;
                 
-                if (data.success) {
-                    // Update the table row with new data
-                    const row = document.getElementById("row-" + studentId);
-                    if (row) {
-                        row.cells[1].textContent = name;
-                        row.cells[2].textContent = cardUid;
-                        // Highlight the updated row
-                        row.style.transition = "background-color 1s";
-                        row.style.backgroundColor = "#d4edda";
+                if (xhr.status === 200) {
+                    console.log("Server response:", xhr.responseText);
+                    
+                    try {
+                        // Try to parse the response as JSON
+                        const response = JSON.parse(xhr.responseText);
+                        
+                        if (response.success) {
+                            // Update the table row with new data
+                            const row = document.getElementById("row-" + studentId);
+                            if (row) {
+                                row.cells[1].textContent = name;
+                                row.cells[2].textContent = cardUid;
+                                
+                                // Update the edit button's onclick attribute
+                                const editButton = row.querySelector('.edit-btn');
+                                if (editButton) {
+                                    editButton.setAttribute('onclick', `openEditModal('${studentId}', '${name.replace(/'/g, "\\'")}', '${cardUid}')`);
+                                }
+                                
+                                // Highlight the updated row
+                                row.style.transition = "background-color 1s";
+                                row.style.backgroundColor = "#d4edda";
+                                setTimeout(() => {
+                                    row.style.backgroundColor = "";
+                                }, 2000);
+                            }
+                            
+                            showStatusMessage("Student updated successfully!", "success");
+                            closeEditModal();
+                        } else {
+                            showStatusMessage("Error: " + (response.error || "Unknown error"), "error");
+                        }
+                    } catch (e) {
+                        console.error("Failed to parse JSON:", xhr.responseText);
+                        showStatusMessage("Error: Invalid server response. Please try again.", "error");
+                        
+                        // Refresh the page as a fallback
                         setTimeout(() => {
-                            row.style.backgroundColor = "";
+                            location.reload();
                         }, 2000);
                     }
-                    
-                    showStatusMessage("Student updated successfully!", "success");
-                    closeEditModal();
                 } else {
-                    showStatusMessage("Error: " + data.error, "error");
+                    // HTTP error
+                    showStatusMessage("Server error: " + xhr.status, "error");
+                    
+                    // Refresh the page as a fallback
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
                 }
-            })
-            .catch(error => {
-                console.error("Fetch error:", error);
-                // Restore button state
+            };
+            
+            xhr.onerror = function() {
+                console.error("Network error");
                 updateButton.innerHTML = originalButtonText;
                 updateButton.disabled = false;
-                showStatusMessage("Network error occurred. Please try again.", "error");
-            });
+                showStatusMessage("Network error occurred. The action may have completed. Refreshing page...", "error");
+                
+                // Refresh the page as a fallback
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+            };
+            
+            // Send the request
+            xhr.send(formData);
         });
         
         // Close modal when clicking outside of it

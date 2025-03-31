@@ -137,40 +137,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .back-btn:hover {
             background-color: #0b7dda;
         }
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
+            .page-header {
+        display: flex;
+        justify-content: flex-end; /* Move buttons to the right */
+        align-items: center;
+        padding: 10px 20px;
+        background-color: transparent; /* Remove background */
+         }
+
+    .header-buttons {
+        display: flex;
+        gap: 10px;
+       }
+
+    .header-btn {
+        background-color: #2196F3;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
         }
-        .header-buttons {
-            display: flex;
-            gap: 10px;
-        }
-        .header-btn {
-            background-color: #2196F3;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .logout-btn {
-            background-color: #f44336;
-        }
+
+    .header-btn:hover {
+        background-color: #03C03C; /* Darker blue on hover */
+        color: #fff;
+      }
+
+    /* Logout button hover effect */
+    .logout-btn {
+        background-color: #4CAF50; /* Green default */
+      }
+
+    .logout-btn:hover {
+        background-color: #f44336; /* Turns red on hover */
+        color: white;
+     }
+
+
     </style>
 </head>
 <body>
     <!-- Header with navigation -->
     <div class="page-header">
-        <h1>RFID System</h1>
         <div class="header-buttons">
             <a href="index.php" class="header-btn">Student Management</a>
             <a href="admindashboard.php" class="header-btn">Admin Management</a>
-            <a href="logout.php" class="header-btn logout-btn">Logout</a>
+            <a href="logout.php" class="header-btn logout-b tn">Logout</a>
         </div>
     </div>
 

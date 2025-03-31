@@ -114,7 +114,7 @@ $result = $conn->query($sql);
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color:rgb(36, 168, 58);
             margin: 0;
             padding: 0;
         }
@@ -228,7 +228,7 @@ $result = $conn->query($sql);
 <body>
     <div class="container">
         <div class="header">
-            <h1>RFID Gate System - Admin Dashboard</h1>
+            <h1>Admin Dashboard</h1>
             <div class="header-buttons">
                 <a href="index.php" class="btn student-btn">Student Management</a>
                 <a href="logout.php" class="btn logout-btn">Logout</a>

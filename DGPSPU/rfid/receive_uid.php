@@ -17,7 +17,7 @@ if (isset($_GET['uid'])) {
     $uid = $_GET['uid'];
 
     // Get student details from the database
-    $stmt = $conn->prepare("SELECT student_id, name FROM students WHERE uid = ?");
+    $stmt = $conn->prepare("SELECT student_id, name FROM students WHERE card_uid = ?");
     $stmt->bind_param("s", $uid);
     $stmt->execute();
     $result = $stmt->get_result();

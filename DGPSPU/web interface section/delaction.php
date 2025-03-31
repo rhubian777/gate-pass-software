@@ -1,25 +1,39 @@
 <?php
-header('Content-Type: application/json');
+// Include database connection
 include("../rfid/db_connect.php");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $student_id = $_POST['student_id'] ?? null;
+// Set the content type to JSON
+header('Content-Type: application/json');
 
-    if ($student_id) {
-        $stmt = $conn->prepare("DELETE FROM students WHERE student_id = ?");
-        $stmt->bind_param("s", $student_id);
-        
-        if ($stmt->execute()) {
-            echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => 'Query failed']);
-        }
+// Initialize response
+$response = array('success' => false);
 
-        $stmt->close();
-    } else {
-        echo json_encode(['success' => false, 'error' => 'Missing student ID']);
+try {
+    // Check if we have the required data
+    if (!isset($_POST['student_id'])) {
+        throw new Exception('Missing student ID');
     }
-
-    $conn->close();
+    
+    // Get and sanitize the student ID
+    $student_id = mysqli_real_escape_string($conn, $_POST['student_id']);
+    
+    // Delete the student record
+    $sql = "DELETE FROM students WHERE student_id = '$student_id'";
+    
+    if (mysqli_query($conn, $sql)) {
+        if (mysqli_affected_rows($conn) > 0) {
+            $response['success'] = true;
+            $response['message'] = 'Student deleted successfully';
+        } else {
+            $response['error'] = 'Student not found';
+        }
+    } else {
+        throw new Exception(mysqli_error($conn));
+    }
+} catch (Exception $e) {
+    $response['error'] = $e->getMessage();
 }
-?>
+
+// Return the JSON response
+echo json_encode($response);
+exit;

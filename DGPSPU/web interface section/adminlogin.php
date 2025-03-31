@@ -54,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,13 +63,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #86af49;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;
         }
         .login-container {
             background-color: white;
@@ -78,10 +78,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             width: 350px;
+            text-align: center;
         }
         h2 {
-            text-align: center;
             color: #333;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+            position: absolute;
+            top: 5%;
+        }
+        .logo-container img {
+            max-width: 150px;
+            height: auto;
         }
         form {
             display: flex;
@@ -127,9 +137,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
+    <div class="logo-container">
+        <img src="../logos/panpacific_logo.png" alt="Panpacific University Logo">
+    </div>
     <div class="login-container">
         <h2>Admin Login</h2>
-        <p>RFID Gate Access Control System</p>
         
         <?php if(!empty($login_err)): ?>
             <div class="error-message"><?php echo $login_err; ?></div>
