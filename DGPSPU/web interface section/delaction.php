@@ -37,3 +37,4 @@ try {
 // Return the JSON response
 echo json_encode($response);
 exit;
+?>

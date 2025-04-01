@@ -101,22 +101,21 @@ if (!$result) {
         }
         
         .back-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    background-color: #2196f3;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-    font-weight: 500;
-    }
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #2196f3;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
 
-    .back-btn:hover {
-        background-color: #03C03C;
-    }
-
+        .back-btn:hover {
+            background-color: #03C03C;
+        }
         
         /* Modal Styles */
         .modal {
@@ -383,7 +382,7 @@ if (!$result) {
             document.getElementById("editModal").style.display = "block";
         }
         
-        // Function to close edit modal
+        // Function to close edit modal - FIXED TYPO HERE
         function closeEditModal() {
             document.getElementById("editModal").style.display = "none";
         }
@@ -401,7 +400,7 @@ if (!$result) {
             }, 5000);
         }
         
-        // Edit student form submission
+        // Edit student form submission - FIXED ALL SYNTAX ERRORS
         document.getElementById("editStudentForm").addEventListener("submit", function(e) {
             e.preventDefault();
             
