@@ -36,7 +36,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
   <!-- Menu Button (Opens Sidebar) -->
   <button id="menu-btn">☰</button>
-
   <div class="container">
     <img src="../logos/pu_logo.png" alt="Logo" class="top-centerlogo"/>
 
@@ -46,7 +45,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <p>ID: <span id="student-id">---</span></p>
       <p>Name: <span id="student-name">---</span></p>
     </div>
-
+ 
     <!-- Scan Logs -->
     <div class="log-container">
       <div class="log-title">SCAN LOGS</div>
@@ -68,6 +67,62 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <!-- View Logs Button -->
     <button class="log-btn" onclick="toggleLogs()">View RFID Logs</button>
   </div>
+
+  <!-- Dev team -->
+  <div style="margin-top: 30px; padding: 25px 15px; border-radius: 8px; text-align: center;">
+  <h3 style="text-align: center; margin-bottom: 25px; font-size: 24px; font-weight: bold; color: white;">MEET THE DEV TEAM</h3>
+  
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+    
+    <!-- Member 1 -->
+    <div style="display: flex; flex-direction: column; align-items: center; width: 200px; border: 2px solid white; border-radius: 15px; padding: 15px; background-color: hsl(120, 60%, 40%);">
+      <img src="../logos/profile1.png" alt="Member 1" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #4CAF50;">
+      <h4 style="margin: 0 0 5px 0; font-size: 15px; font-weight: bold; color: black;">Chrismar Jose Ganzagan</h4>
+      <p style="margin: 0 0 10px 0; font-size: 14px; color: white;">Lead Developer</p>
+      <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+      <a href="https://www.facebook.com/JJHXCJG" target="_blank">
+  <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
+</a>
+
+<a href="https://www.instagram.com/rhubian777/" target="_blank">
+  <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
+</a>
+      </div>
+    </div>
+    
+    <!-- Member 2 -->
+    <div style="display: flex; flex-direction: column; align-items: center; width: 200px; border: 2px solid white; border-radius: 15px; padding: 15px; background-color: hsl(120, 60%, 40%);">
+      <img src="../logos/profile2.png" alt="Member 2" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #4CAF50;">
+      <h4 style="margin: 0 0 5px 0; font-size: 15px; font-weight: bold; color: black;">Carlitos Avel Caoayan</h4>
+      <p style="margin: 0 0 10px 0; font-size: 14px; color: white;">Designer</p>
+      <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+      <a href="https://www.facebook.com/yourprofile" target="_blank">
+  <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
+</a>
+
+<a href="https://www.instagram.com/yourprofile" target="_blank">
+  <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
+</a>
+      </div>
+    </div>
+    
+    <!-- Member 3 -->
+    <div style="display: flex; flex-direction: column; align-items: center; width: 200px; border: 2px solid white; border-radius: 15px; padding: 15px; background-color: hsl(120, 60%, 40%);">
+      <img src="../logos/profile3.png" alt="Member 3" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #4CAF50;">
+      <h4 style="margin: 0 0 5px 0; font-size: 15px; font-weight: bold; color: black;">Jonray Dale Manzano</h4>
+      <p style="margin: 0 0 10px 0; font-size: 14px; color: white;">Designer</p>
+      <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+<a href="https://www.facebook.com/yourprofile" target="_blank">
+  <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
+</a>
+
+<a href="https://www.instagram.com/yourprofile" target="_blank">
+  <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
+</a>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Scripts -->
   <script src="script.js"></script>
