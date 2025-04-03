@@ -46,23 +46,26 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <p>Name: <span id="student-name">---</span></p>
     </div>
  
-    <!-- Scan Logs -->
-    <div class="log-container">
-      <div class="log-title">SCAN LOGS</div>
-      <table>
-        <thead>
-          <tr>
-            <th>Student ID</th>
-            <th>Name</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody id="logs-table"></tbody>
-        <tbody id="scan-logs-table-body">
-          <!-- Logs will load here automatically -->
-        </tbody>
-      </table>
-    </div>
+   <!-- Scan Logs -->
+<div class="log-container">
+  <div class="log-title">SCAN LOGS</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Time</th>
+        <th>Year</th>
+        <th>Course</th>
+      </tr>
+    </thead>
+    <tbody id="logs-table"></tbody>
+    <tbody id="scan-logs-table-body">
+      <!-- Logs will load here automatically -->
+    </tbody>
+  </table>
+</div>
+
 
     <!-- View Logs Button -->
     <button class="log-btn" onclick="toggleLogs()">View RFID Logs</button>
@@ -81,12 +84,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <p style="margin: 0 0 10px 0; font-size: 14px; color: white;">Lead Developer</p>
       <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
       <a href="https://www.facebook.com/JJHXCJG" target="_blank">
-  <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
-</a>
+      <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
+    </a>
 
-<a href="https://www.instagram.com/rhubian777/" target="_blank">
-  <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
-</a>
+    <a href="https://www.instagram.com/rhubian777/" target="_blank">
+      <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
+    </a>
       </div>
     </div>
     
@@ -94,15 +97,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <div style="display: flex; flex-direction: column; align-items: center; width: 200px; border: 2px solid white; border-radius: 15px; padding: 15px; background-color: hsl(120, 60%, 40%);">
       <img src="../logos/profile2.png" alt="Member 2" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #4CAF50;">
       <h4 style="margin: 0 0 5px 0; font-size: 15px; font-weight: bold; color: black;">Carlitos Avel Caoayan</h4>
-      <p style="margin: 0 0 10px 0; font-size: 14px; color: white;">Designer</p>
+      <p style="margin: 0 0 10px 0; font-size: 14px; color: white;">Pancit Canton Developer</p>
       <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
       <a href="https://www.facebook.com/yourprofile" target="_blank">
-  <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
-</a>
+      <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
+    </a>
 
-<a href="https://www.instagram.com/yourprofile" target="_blank">
-  <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
-</a>
+    <a href="https://www.instagram.com/yourprofile" target="_blank">
+      <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
+    </a>
       </div>
     </div>
     
@@ -110,19 +113,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <div style="display: flex; flex-direction: column; align-items: center; width: 200px; border: 2px solid white; border-radius: 15px; padding: 15px; background-color: hsl(120, 60%, 40%);">
       <img src="../logos/profile3.png" alt="Member 3" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #4CAF50;">
       <h4 style="margin: 0 0 5px 0; font-size: 15px; font-weight: bold; color: black;">Jonray Dale Manzano</h4>
-      <p style="margin: 0 0 10px 0; font-size: 14px; color: white;">Designer</p>
+      <p style="margin: 0 0 10px 0; font-size: 14px; color: white;">Moral and Presence Support</p>
       <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
-<a href="https://www.facebook.com/yourprofile" target="_blank">
-  <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
-</a>
+      <a href="https://www.facebook.com/yourprofile" target="_blank">
+        <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
+      </a>
 
-<a href="https://www.instagram.com/yourprofile" target="_blank">
-  <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
-</a>
+      <a href="https://www.instagram.com/yourprofile" target="_blank">
+        <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
+      </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <!-- Scripts -->
   <script src="script.js"></script>
@@ -138,65 +141,67 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       window.location.href = "delete_student.php";
     });
 
-    // Toggle logs visibility
-    let logsVisible = false;
-    function toggleLogs() {
-      const logContainer = document.querySelector('.log-container');
-      const logsTable = document.getElementById('logs-table');
-      const button = document.querySelector('.log-btn');
+   // Toggle logs visibility
+let logsVisible = false;
+function toggleLogs() {
+  const logContainer = document.querySelector('.log-container');
+  const logsTable = document.getElementById('logs-table');
+  const button = document.querySelector('.log-btn');
 
-      if (!logsVisible) {
-        fetch('fetch_logs.php')
-          .then(res => res.json())
-          .then(data => {
-            logsTable.innerHTML = '';
-            if (data.length > 0) {
-              data.forEach(log => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                  <td>${log.student_id || log.uid}</td>
-                  <td>${log.name || 'Unknown Student'}</td>
-                  <td>${log.time}</td>
-                `;
-                logsTable.appendChild(row);
-              });
-            } else {
-              logsTable.innerHTML = '<tr><td colspan="3">No scan logs available.</td></tr>';
-            }
-            logContainer.style.display = 'block';
-            button.textContent = 'Hide RFID Logs';
-            logsVisible = true;
-          })
-          .catch(error => {
-            console.error('Error fetching logs:', error);
-            logsTable.innerHTML = '<tr><td colspan="3">Failed to load scan logs.</td></tr>';
-            logContainer.style.display = 'block';
-            button.textContent = 'Hide RFID Logs';
-            logsVisible = true;
+  if (!logsVisible) {
+    fetch('fetch_logs.php')
+      .then(res => res.json())
+      .then(data => {
+        logsTable.innerHTML = '';
+        if (data.length > 0) {
+          data.forEach(log => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${log.student_id || log.uid}</td>
+              <td>${log.name || 'Unknown Student'}</td>
+              <td>${log.timestamp || 'N/A'}</td>
+              <td>${log.year || 'N/A'}</td>
+              <td>${log.course}</td>
+            `;
+            logsTable.appendChild(row);
           });
-      } else {
-        logContainer.style.display = 'none';
-        button.textContent = 'View RFID Logs';
-        logsVisible = false;
-      }
-    }
+        } else {
+          logsTable.innerHTML = '<tr><td colspan="5">No scan logs available.</td></tr>';
+        }
+        logContainer.style.display = 'block';
+        button.textContent = 'Hide RFID Logs';
+        logsVisible = true;
+      })
+      .catch(error => {
+        console.error('Error fetching logs:', error);
+        logsTable.innerHTML = '<tr><td colspan="5">Failed to load scan logs.</td></tr>';
+        logContainer.style.display = 'block';
+        button.textContent = 'Hide RFID Logs';
+        logsVisible = true;
+      });
+  } else {
+    logContainer.style.display = 'none';
+    button.textContent = 'View RFID Logs';
+    logsVisible = false;
+  }
+}
 
-    // Auto-refresh scan logs
-    function loadLogs() {
-      fetch('load_logs.php')
-        .then(res => res.text())
-        .then(data => {
-          document.getElementById('scan-logs-table-body').innerHTML = data;
-        })
-        .catch(error => {
-          document.getElementById('scan-logs-table-body').innerHTML =
-            '<tr><td colspan="3">Failed to load scan logs.</td></tr>';
-          console.error('Error loading logs:', error);
-        });
-    }
+// Auto-refresh scan logs
+function loadLogs() {
+  fetch('load_logs.php')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('scan-logs-table-body').innerHTML = data;
+    })
+    .catch(error => {
+      document.getElementById('scan-logs-table-body').innerHTML =
+        '<tr><td colspan="5">Failed to load scan logs.</td></tr>';
+      console.error('Error loading logs:', error);
+    });
+}
 
-    window.onload = loadLogs;
-    setInterval(loadLogs, 5000); // Refresh logs every 5 seconds
+window.onload = loadLogs;
+setInterval(loadLogs, 5000); // Refresh logs every 5 seconds
   </script>
 
 </body>
