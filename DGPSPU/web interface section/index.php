@@ -364,6 +364,8 @@ let lastProcessedScanId = null;
 
 // Function to update the dashboard with student details
 function updateDashboard(studentData) {
+  console.log("Updating dashboard with:", studentData);
+  
   document.getElementById('student-id').textContent = studentData.student_id || 'Unknown';
   document.getElementById('student-name').textContent = studentData.name || 'Unknown';
   document.getElementById('student-course').textContent = studentData.course || 'N/A';
@@ -384,22 +386,37 @@ function updateDashboard(studentData) {
 
 // Function to check for new scans
 function checkForNewScans() {
+  console.log("Checking for new scans...");
+  
   fetch('get_latest_scan.php')
-    .then(response => response.json())
+    .then(response => {
+      console.log("Response status:", response.status);
+      return response.json();
+    })
     .then(data => {
+      console.log("Received data:", data);
+      
       // Handle the case where "status": "empty" is returned
       if (data.status === "empty") {
+        console.log("No new scans found");
         return;
       }
       
       // Since get_latest_scan.php returns an array, we take the first item (most recent scan)
-      const latestScan = data[0];
+      const latestScan = Array.isArray(data) ? data[0] : data;
+      console.log("Latest scan:", latestScan);
       
-      // Check if this is a new scan (based on timestamp or another unique identifier)
-      // You might need to add a scan_id to your database for more reliable tracking
-      if (lastProcessedScanId !== latestScan.timestamp) {
-        lastProcessedScanId = latestScan.timestamp;
+      // Use scan_id if available, otherwise fall back to timestamp
+      const scanIdentifier = latestScan.scan_id || latestScan.timestamp;
+      console.log("Scan identifier:", scanIdentifier, "Last processed:", lastProcessedScanId);
+      
+      // Check if this is a new scan
+      if (lastProcessedScanId !== scanIdentifier) {
+        console.log("New scan detected!");
+        lastProcessedScanId = scanIdentifier;
         updateDashboard(latestScan);
+      } else {
+        console.log("Already processed this scan");
       }
     })
     .catch(error => {

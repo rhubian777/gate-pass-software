@@ -2,40 +2,60 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-// Database connection
 $conn = new mysqli("localhost", "root", "", "rfid_system");
 
-// Check connection
 if ($conn->connect_error) {
-    die(json_encode(["error" => "Database connection failed: " . $conn->connect_error]));
+    die(json_encode(["error" => "Database connection failed"]));
 }
 
-// Fetch scan logs with Course and Year formatted properly
-$sql = "SELECT scan_logs.student_id, students.name, students.course, 
-        CASE 
-            WHEN students.year = 1 THEN '1st Year'
-            WHEN students.year = 2 THEN '2nd Year'
-            WHEN students.year = 3 THEN '3rd Year'
-            WHEN students.year = 4 THEN '4th Year'
-            ELSE 'Unknown Year'
-        END AS year_level, 
-        scan_logs.timestamp 
-        FROM scan_logs 
-        JOIN students ON scan_logs.student_id = students.student_id
-        ORDER BY scan_logs.timestamp DESC";
+// Get scan logs with student information
+$sql = "SELECT l.id as scan_id, 
+               l.student_id, 
+               l.timestamp, 
+               s.name, 
+               s.course, 
+               s.year,
+               IFNULL(s.course, 'N/A') as course  /* Ensures course is never NULL */
+        FROM scan_logs l 
+        LEFT JOIN students s ON l.student_id = s.student_id 
+        ORDER BY l.timestamp DESC 
+        LIMIT 50";  // Adjust limit as needed
 
 $result = $conn->query($sql);
+$logs = [];
 
-if (!$result) {
-    die(json_encode(["error" => "SQL query failed: " . $conn->error]));
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        // Format the year with the appropriate suffix
+        if (!empty($row['year'])) {
+            $year = $row['year'];
+            $suffix = 'th';
+            
+            if ($year % 10 == 1 && $year % 100 != 11) {
+                $suffix = 'st';
+            } elseif ($year % 10 == 2 && $year % 100 != 12) {
+                $suffix = 'nd';
+            } elseif ($year % 10 == 3 && $year % 100 != 13) {
+                $suffix = 'rd';
+            }
+            
+            $row['year'] = $year . $suffix . ' Year';
+        }
+        
+        // Make sure course is never empty
+        if (empty($row['course'])) {
+            $row['course'] = 'N/A';
+        }
+        
+        // Format timestamp
+        if (!empty($row['timestamp'])) {
+            $row['timestamp'] = date('M d, Y h:i:s A', strtotime($row['timestamp']));
+        }
+        
+        $logs[] = $row;
+    }
 }
 
-$data = [];
-while ($row = $result->fetch_assoc()) {
-    $data[] = $row;
-}
-
-// Return JSON response
-echo json_encode($data, JSON_PRETTY_PRINT);
+echo json_encode($logs);
 $conn->close();
 ?>
