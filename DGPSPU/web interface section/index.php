@@ -54,22 +54,29 @@ $yearData = $conn->query("SELECT year, COUNT(*) as count FROM students GROUP BY 
   <button id="menu-btn">☰</button>
   <div class="container">
     <img src="../logos/pu_logo.png" alt="Logo" class="top-centerlogo"/>
-  <!-- Dashboard Container -->
-<div class="dashboard-container">
-  <div class="dashboard-card">
-    <h2>STUDENT DASHBOARD</h2>
-    <div id="dashboard-content">
-      <div class="dashboard-info">
-        <p><strong>Student ID:</strong> <span id="student-id">Waiting for scan...</span></p>
-        <p><strong>Name:</strong> <span id="student-name">Waiting for scan...</span></p>
-        <p><strong>Course:</strong> <span id="student-course">Waiting for scan...</span></p>
-        <p><strong>Year:</strong> <span id="student-year">Waiting for scan...</span></p>
-        <p><strong>Last Scan:</strong> <span id="scan-time">-</span></p>
+      <!-- Dashboard Container -->
+    <div class="dashboard-container">
+      <div class="dashboard-card">
+        <h2>STUDENT DASHBOARD</h2>
+        <div id="dashboard-content">
+          <div class="dashboard-info">
+            <p><strong>Student ID:</strong> <span id="student-id">Waiting for scan...</span></p>
+            <p><strong>Name:</strong> <span id="student-name">Waiting for scan...</span></p>
+            <p><strong>Course:</strong> <span id="student-course">Waiting for scan...</span></p>
+            <p><strong>Year:</strong> <span id="student-year">Waiting for scan...</span></p>
+          </div>
+              <div class="info-row">
+          <span class="label">In:</span>
+          <span id="time-in">Not available</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Out:</span>
+          <span id="time-out">Not available</span>
+        </div>
+        </div>
+        <div id="scan-status"></div>
       </div>
     </div>
-    <div id="scan-status"></div>
-  </div>
-</div>
 
 <!-- View Logs Button -->
 <button class="log-btn" onclick="toggleLogs()">View RFID Logs</button>
@@ -431,6 +438,70 @@ setInterval(checkForNewScans, 2000);
 document.addEventListener('DOMContentLoaded', checkForNewScans);
 
     </script>
+  <script>
+   // Function to check for new in/out times
+function checkForInOutTimes() {
+  console.log("Checking for in/out times...");
+  
+  fetch('time_in_out.php')
+    .then(response => {
+      console.log("Response status:", response.status);
+      return response.json();
+    })
+    .then(data => {
+      console.log("Received data:", data);
+      
+      // Handle the case where "status": "empty" is returned
+      if (data.status === "empty") {
+        console.log("No scan data found");
+        return;
+      }
+      
+      // Update dashboard with in/out times
+      updateDashboardWithTimes(data);
+    })
+    .catch(error => {
+      console.error('Error checking for in/out times:', error);
+    });
+}
 
+// Function to update the dashboard with time in/out
+function updateDashboardWithTimes(studentData) {
+  document.getElementById('student-id').textContent = studentData.student_id || 'Waiting for scan...';
+  document.getElementById('student-name').textContent = studentData.name || 'Waiting for scan...';
+  document.getElementById('student-course').textContent = studentData.course || 'N/A';
+  document.getElementById('student-year').textContent = studentData.year || 'N/A';
+  
+  // Update time in and time out, handling both string values and null/undefined
+  if (studentData.time_in && studentData.time_in !== 'Not available') {
+    document.getElementById('time-in').textContent = studentData.time_in;
+  } else {
+    document.getElementById('time-in').textContent = 'Not available';
+  }
+  
+  if (studentData.time_out && studentData.time_out !== 'Not available') {
+    document.getElementById('time-out').textContent = studentData.time_out;
+  } else {
+    document.getElementById('time-out').textContent = 'Not available';
+  }
+  
+  // Show scan status
+  const scanStatus = document.getElementById('scan-status');
+  scanStatus.textContent = 'Time in & Out Updated!';
+  scanStatus.className = 'success';
+  
+  // Clear the status after 3 seconds
+  setTimeout(() => {
+    scanStatus.textContent = '';
+    scanStatus.className = '';
+  }, 3000);
+}
+
+// Replace your existing interval with this:
+setInterval(checkForInOutTimes, 2000);
+
+// Also check immediately when the page loads
+document.addEventListener('DOMContentLoaded', checkForInOutTimes);
+</script>
 </body>
 </html>
