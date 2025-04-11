@@ -15,280 +15,8 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="delete_student.css"/>
     <title>Student Management</title>
-    <style>
-        /* CSS remains the same */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #008B8B;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-        }
-        
-        h2 {
-            color: #333;
-            text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 20px;
-        }
-        
-        .table-container {
-            overflow-x: auto;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background-color: #f9f9f9;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        tr:hover {
-            background-color: #f7f7f7;
-        }
-        
-        .btn {
-            padding: 6px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .delete-btn {
-            background-color: #ff5252;
-            color: white;
-            margin-right: 5px;
-        }
-        
-        .delete-btn:hover {
-            background-color: #ff0000;
-        }
-        
-        .edit-btn {
-            background-color: #4caf50;
-            color: white;
-        }
-        
-        .edit-btn:hover {
-            background-color: #388e3c;
-        }
-        
-        .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            padding: 10px 20px;
-            background-color: #2196f3;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            font-weight: 500;
-        }
-
-        .back-btn:hover {
-            background-color: #03C03C;
-        }
-        
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-        
-        .modal-content {
-            position: relative;
-            background-color: #fff;
-            margin: 100px auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        
-        .submit-btn {
-            background-color: #4caf50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            margin-top: 10px;
-        }
-        
-        .submit-btn:hover {
-            background-color: #388e3c;
-        }
-        
-        /* Status message */
-        .status-message {
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            text-align: center;
-            display: none;
-        }
-        
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        
-        /* Loader */
-        .loader {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            border: 3px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 3px solid #3498db;
-            animation: spin 1s linear infinite;
-            vertical-align: middle;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Search bar styles */
-        .search-container {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .search-container input {
-            width: 70%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px 0 0 4px;
-            font-size: 16px;
-        }
-        
-        .search-container button {
-            padding: 10px 15px;
-            background-color: #2196f3;
-            color: white;
-            border: none;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        
-        .search-container button:hover {
-            background-color: #0b7dda;
-        }
-
-                /* Search bar styles */
-        .search-container {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .search-container input {
-            width: 70%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px 0 0 4px;
-            font-size: 16px;
-        }
-
-        .search-container button {
-            padding: 10px 15px;
-            background-color: #2196f3;
-            color: white;
-            border: none;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .search-container button:hover {
-            background-color: #0b7dda;
-        }
-
-        .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            background-color: white;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -301,13 +29,52 @@ if (!$result) {
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Search by ID, Name, Course...">
             <button onclick="searchStudents()">Search</button>
+        </div>   <!-- Add this right after your <h2>REGISTERED STUDENTS</h2> and before the status message div -->
+<div class="filter-container">
+    <div class="filter-group">
+        <label for="courseFilter">Filter by Course:</label>
+        <select id="courseFilter" onchange="filterStudents()">
+            <option value="">All Courses</option>
+            <option value="BSIT">Bachelor of Science in Information Technology</option>
+            <option value="BSN">Bachelor of Science in Nursing</option>
+            <option value="BSP">Bachelor of Science in Pharmacy</option>
+            <option value="BSCS">Bachelor of Science in Computer Science</option>
+            <option value="BSCE">Bachelor of Science in Computer Engineering</option>
+            <option value="BSEE">Bachelor of Science in Electrical Engineering</option>
+            <option value="BSECE">Bachelor of Science in Electronics Engineering</option>
+            <option value="BSCE">Bachelor of Science in Civil Engineering</option>
+            <option value="BSA">Bachelor of Science in Accountancy</option>
+            <option value="BSBA">Bachelor of Science in Business Administration</option>
+            <option value="BSHM">Bachelor of Science in Hospitality Management</option>
+            <option value="BSTM">Bachelor of Science in Tourism Management</option>
+            <option value="BAP">Bachelor of Arts in Psychology</option>
+            <option value="BEE">Bachelor of Elementary Education</option>
+            <option value="BPA">Bachelor of Public Administration</option>
+            <option value="BPE">Bachelor of Physical Education</option>
+            <option value="BSE">Bachelor of Secondary Education</option>
+            <option value="BSC">Bachelor of Science in Criminology</option>
+            <option value="BSMT">Bachelor of Science in Marine Transportation</option>
+        </select>
+            </div>
+            <div class="filter-group">
+                <label for="yearFilter">Filter by Year:</label>
+                <select id="yearFilter" onchange="filterStudents()">
+                    <option value="">All Years</option>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+                </select>
+            </div>
+            <button class="reset-btn" onclick="resetFilters()">Reset Filters</button>
         </div>
-        
+
         <div class="table-container">
             <?php if (isset($error_message)): ?>
                 <div class="status-message error" style="display: block;">
                     <?php echo $error_message; ?>
-                </div>
+                    
+                    </div>
             <?php else: ?>
                 <table>
                     <thead>
@@ -320,6 +87,11 @@ if (!$result) {
                             <th>Actions</th>
                         </tr>
                     </thead>
+                    <div id="noResultsMessage" class="no-results-message" style="display: none;">
+                <i class="fa fa-search"></i>
+                <p>No students match your search criteria.</p>
+                <button onclick="resetFilters()" class="reset-search-btn">Clear Filters</button>
+            </div>
                     <tbody id="studentTableBody">
                         <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                             <tr id="row-<?= htmlspecialchars($row['student_id']) ?>">
@@ -328,44 +100,45 @@ if (!$result) {
                                 <td><?= htmlspecialchars($row['card_uid']) ?></td>
                                 <td><?= htmlspecialchars($row['course']) ?></td>
                                 <td>
-                                <?php 
-                                // Format the year display
-                                $year = trim($row['year']);
-                                if (is_numeric($year)) {
-                                    switch ($year) {
-                                        case '1':
-                                            echo '1st Year';
-                                            break;
-                                        case '2':
-                                            echo '2nd Year';
-                                            break;
-                                        case '3':
-                                            echo '3rd Year';
-                                            break;
-                                        case '4':
-                                            echo '4th Year';
-                                            break;
-                                        default:
-                                            echo $year;
-                                    }
-                                } else {
-                                    // If already in "Xst Year" format, just display it
-                                    echo htmlspecialchars($year);
-                                }
-                                ?>
-                                 </td>
-                                 <td>
-                                    <button class="btn edit-btn" onclick="openEditModal('<?= htmlspecialchars($row['student_id']) ?>', '<?= htmlspecialchars(addslashes($row['name'])) ?>', '<?= htmlspecialchars($row['card_uid']) ?>', '<?= htmlspecialchars(addslashes($row['course'])) ?>', '<?= htmlspecialchars($row['year']) ?>')">Edit</button>
-                                    <button class="btn delete-btn" onclick="deleteStudent('<?= htmlspecialchars($row['student_id']) ?>')">Delete</button>
-                                </td>
-                            </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
-            <?php endif; ?>
+
+    <?php 
+     // Format the year display
+     $year = trim($row['year']);
+     if (is_numeric($year)) {
+         switch ($year) {
+             case '1':
+                 echo '1st Year';
+                 break;
+             case '2':
+                 echo '2nd Year';
+                 break;
+             case '3':
+                 echo '3rd Year';
+                 break;
+             case '4':
+                 echo '4th Year';
+                 break;
+             default:
+                 echo $year;
+         }
+     } else {
+         // If already in "Xst Year" format, just display it
+         echo htmlspecialchars($year);
+     }
+     ?>
+      </td>
+      <td>
+         <button class="btn edit-btn" onclick="openEditModal('<?= htmlspecialchars($row['student_id']) ?>', '<?= htmlspecialchars(addslashes($row['name'])) ?>', '<?= htmlspecialchars($row['card_uid']) ?>', '<?= htmlspecialchars(addslashes($row['course'])) ?>', '<?= htmlspecialchars($row['year']) ?>')">Edit</button>
+         <button class="btn delete-btn" onclick="deleteStudent('<?= htmlspecialchars($row['student_id']) ?>')">Delete</button>
+            </td>
+        </tr>
+        <?php endwhile; ?>
+        </tbody>
+        </table>
+        <?php endif; ?>
         </div>
-    </div>
-    
+        </div>
+
    <!-- Edit Student Modal -->
 <div id="editModal" class="modal">
     <div class="modal-content">
@@ -685,6 +458,105 @@ window.onclick = function(event) {
     const modal = document.getElementById("editModal");
     if (event.target === modal) {
         closeEditModal();
+    }
+}
+// Function to filter students based on selected criteria
+function filterStudents() {
+    const courseFilter = document.getElementById("courseFilter").value.toLowerCase();
+    const yearFilter = document.getElementById("yearFilter").value;
+    const tableRows = document.querySelectorAll("#studentTableBody tr");
+    
+    let resultsFound = false;
+    
+    tableRows.forEach(row => {
+        const course = row.cells[3].textContent.toLowerCase();
+        const year = row.cells[4].textContent.trim();
+        
+        // Check if row matches both filters
+        const matchesCourse = courseFilter === "" || course.includes(courseFilter);
+        const matchesYear = yearFilter === "" || year === yearFilter;
+        
+        if (matchesCourse && matchesYear) {
+            row.style.display = ""; // Show the row
+            resultsFound = true;
+        } else {
+            row.style.display = "none"; // Hide the row
+        }
+    });
+    
+    // Show message if no results found
+    const noResultsMsg = document.getElementById("noResultsMessage");
+    if (noResultsMsg) {
+        if (!resultsFound && (courseFilter !== "" || yearFilter !== "")) {
+            noResultsMsg.style.display = "block";
+        } else {
+            noResultsMsg.style.display = "none";
+        }
+    }
+}
+
+// Function to reset all filters
+function resetFilters() {
+    document.getElementById("courseFilter").value = "";
+    document.getElementById("yearFilter").value = "";
+    document.getElementById("searchInput").value = "";
+    
+    // Show all rows
+    const tableRows = document.querySelectorAll("#studentTableBody tr");
+    tableRows.forEach(row => {
+        row.style.display = "";
+    });
+    
+    // Hide no results message
+    const noResultsMsg = document.getElementById("noResultsMessage");
+    if (noResultsMsg) {
+        noResultsMsg.style.display = "none";
+    }
+}
+
+// Modify your existing search function to work with filters
+function searchStudents() {
+    const searchValue = document.getElementById("searchInput").value.toLowerCase();
+    const courseFilter = document.getElementById("courseFilter").value.toLowerCase();
+    const yearFilter = document.getElementById("yearFilter").value;
+    const tableRows = document.querySelectorAll("#studentTableBody tr");
+    
+    let resultsFound = false;
+    
+    tableRows.forEach(row => {
+        const studentId = row.cells[0].textContent.toLowerCase();
+        const name = row.cells[1].textContent.toLowerCase();
+        const course = row.cells[3].textContent.toLowerCase();
+        const year = row.cells[4].textContent.trim();
+        
+        // Check if search matches
+        const matchesSearch = searchValue === "" || 
+            studentId.includes(searchValue) || 
+            name.includes(searchValue) || 
+            course.includes(searchValue) || 
+            year.toLowerCase().includes(searchValue);
+            
+        // Check if row matches filters
+        const matchesCourse = courseFilter === "" || course.includes(courseFilter);
+        const matchesYear = yearFilter === "" || year === yearFilter;
+        
+        // Show row only if it matches both search and filters
+        if (matchesSearch && matchesCourse && matchesYear) {
+            row.style.display = ""; // Show the row
+            resultsFound = true;
+        } else {
+            row.style.display = "none"; // Hide the row
+        }
+    });
+    
+    // Show message if no results found
+    const noResultsMsg = document.getElementById("noResultsMessage");
+    if (noResultsMsg) {
+        if (!resultsFound) {
+            noResultsMsg.style.display = "block";
+        } else {
+            noResultsMsg.style.display = "none";
+        }
     }
 }
     </script>
