@@ -27,7 +27,7 @@ if (!$result) {
         
         <!-- Search Bar -->
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search by ID, Name, Course...">
+            <input type="text" id="searchInput" placeholder="Search by ID, Name...">
             <button onclick="searchStudents()">Search</button>
         </div>   <!-- Add this right after your <h2>REGISTERED STUDENTS</h2> and before the status message div -->
 <div class="filter-container">
@@ -77,67 +77,69 @@ if (!$result) {
                     </div>
             <?php else: ?>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Name</th>
-                            <th>Card UID</th>
-                            <th>Course</th>
-                            <th>Year</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <div id="noResultsMessage" class="no-results-message" style="display: none;">
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Card UID</th>
+            <th>Course</th>
+            <th>Year</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="studentTableBody">
+        <!-- This is the no results message row that appears in the tbody -->
+        <tr id="noResultsRow" style="display: none;">
+            <td colspan="6" style="text-align: center; padding: 20px;">
                 <i class="fa fa-search"></i>
-                <p>No students match your search criteria.</p>
+                <p style="margin-bottom: 20px;"> No students match your search criteria.</p>
                 <button onclick="resetFilters()" class="reset-search-btn">Clear Filters</button>
-            </div>
-                    <tbody id="studentTableBody">
-                        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-                            <tr id="row-<?= htmlspecialchars($row['student_id']) ?>">
-                                <td><?= htmlspecialchars($row['student_id']) ?></td>
-                                <td><?= htmlspecialchars($row['name']) ?></td>
-                                <td><?= htmlspecialchars($row['card_uid']) ?></td>
-                                <td><?= htmlspecialchars($row['course']) ?></td>
-                                <td>
-
-    <?php 
-     // Format the year display
-     $year = trim($row['year']);
-     if (is_numeric($year)) {
-         switch ($year) {
-             case '1':
-                 echo '1st Year';
-                 break;
-             case '2':
-                 echo '2nd Year';
-                 break;
-             case '3':
-                 echo '3rd Year';
-                 break;
-             case '4':
-                 echo '4th Year';
-                 break;
-             default:
-                 echo $year;
-         }
-     } else {
-         // If already in "Xst Year" format, just display it
-         echo htmlspecialchars($year);
-     }
-     ?>
-      </td>
-      <td>
-         <button class="btn edit-btn" onclick="openEditModal('<?= htmlspecialchars($row['student_id']) ?>', '<?= htmlspecialchars(addslashes($row['name'])) ?>', '<?= htmlspecialchars($row['card_uid']) ?>', '<?= htmlspecialchars(addslashes($row['course'])) ?>', '<?= htmlspecialchars($row['year']) ?>')">Edit</button>
-         <button class="btn delete-btn" onclick="deleteStudent('<?= htmlspecialchars($row['student_id']) ?>')">Delete</button>
             </td>
         </tr>
+        
+        <!-- Your regular data rows -->
+        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+            <tr id="row-<?= htmlspecialchars($row['student_id']) ?>">
+                <td><?= htmlspecialchars($row['student_id']) ?></td>
+                <td><?= htmlspecialchars($row['name']) ?></td>
+                <td><?= htmlspecialchars($row['card_uid']) ?></td>
+                <td><?= htmlspecialchars($row['course']) ?></td>
+                <td>
+                    <?php 
+                    // Format the year display
+                    $year = trim($row['year']);
+                    if (is_numeric($year)) {
+                        switch ($year) {
+                            case '1':
+                                echo '1st Year';
+                                break;
+                            case '2':
+                                echo '2nd Year';
+                                break;
+                            case '3':
+                                echo '3rd Year';
+                                break;
+                            case '4':
+                                echo '4th Year';
+                                break;
+                            default:
+                                echo $year;
+                        }
+                    } else {
+                        // If already in "Xst Year" format, just display it
+                        echo htmlspecialchars($year);
+                    }
+                    ?>
+                </td>
+                <td>
+                    <button class="btn edit-btn" onclick="openEditModal('<?= htmlspecialchars($row['student_id']) ?>', '<?= htmlspecialchars(addslashes($row['name'])) ?>', '<?= htmlspecialchars($row['card_uid']) ?>', '<?= htmlspecialchars(addslashes($row['course'])) ?>', '<?= htmlspecialchars($row['year']) ?>')">Edit</button>
+                    <button class="btn delete-btn" onclick="deleteStudent('<?= htmlspecialchars($row['student_id']) ?>')">Delete</button>
+                </td>
+            </tr>
         <?php endwhile; ?>
-        </tbody>
-        </table>
-        <?php endif; ?>
-        </div>
-        </div>
+    </tbody>
+</table>
+<?php endif; ?>
 
    <!-- Edit Student Modal -->
 <div id="editModal" class="modal">
@@ -464,11 +466,14 @@ window.onclick = function(event) {
 function filterStudents() {
     const courseFilter = document.getElementById("courseFilter").value.toLowerCase();
     const yearFilter = document.getElementById("yearFilter").value;
-    const tableRows = document.querySelectorAll("#studentTableBody tr");
+    const tableRows = document.querySelectorAll("#studentTableBody tr:not(#noResultsRow)");
     
     let resultsFound = false;
     
     tableRows.forEach(row => {
+        // Skip the noResultsRow itself
+        if (row.id === "noResultsRow") return;
+        
         const course = row.cells[3].textContent.toLowerCase();
         const year = row.cells[4].textContent.trim();
         
@@ -485,12 +490,12 @@ function filterStudents() {
     });
     
     // Show message if no results found
-    const noResultsMsg = document.getElementById("noResultsMessage");
-    if (noResultsMsg) {
+    const noResultsRow = document.getElementById("noResultsRow");
+    if (noResultsRow) {
         if (!resultsFound && (courseFilter !== "" || yearFilter !== "")) {
-            noResultsMsg.style.display = "block";
+            noResultsRow.style.display = "table-row";
         } else {
-            noResultsMsg.style.display = "none";
+            noResultsRow.style.display = "none";
         }
     }
 }
@@ -502,15 +507,15 @@ function resetFilters() {
     document.getElementById("searchInput").value = "";
     
     // Show all rows
-    const tableRows = document.querySelectorAll("#studentTableBody tr");
+    const tableRows = document.querySelectorAll("#studentTableBody tr:not(#noResultsRow)");
     tableRows.forEach(row => {
         row.style.display = "";
     });
     
     // Hide no results message
-    const noResultsMsg = document.getElementById("noResultsMessage");
-    if (noResultsMsg) {
-        noResultsMsg.style.display = "none";
+    const noResultsRow = document.getElementById("noResultsRow");
+    if (noResultsRow) {
+        noResultsRow.style.display = "none";
     }
 }
 
@@ -519,11 +524,14 @@ function searchStudents() {
     const searchValue = document.getElementById("searchInput").value.toLowerCase();
     const courseFilter = document.getElementById("courseFilter").value.toLowerCase();
     const yearFilter = document.getElementById("yearFilter").value;
-    const tableRows = document.querySelectorAll("#studentTableBody tr");
+    const tableRows = document.querySelectorAll("#studentTableBody tr:not(#noResultsRow)");
     
     let resultsFound = false;
     
     tableRows.forEach(row => {
+        // Skip the noResultsRow
+        if (row.id === "noResultsRow") return;
+        
         const studentId = row.cells[0].textContent.toLowerCase();
         const name = row.cells[1].textContent.toLowerCase();
         const course = row.cells[3].textContent.toLowerCase();
@@ -550,12 +558,12 @@ function searchStudents() {
     });
     
     // Show message if no results found
-    const noResultsMsg = document.getElementById("noResultsMessage");
-    if (noResultsMsg) {
+    const noResultsRow = document.getElementById("noResultsRow");
+    if (noResultsRow) {
         if (!resultsFound) {
-            noResultsMsg.style.display = "block";
+            noResultsRow.style.display = "table-row";
         } else {
-            noResultsMsg.style.display = "none";
+            noResultsRow.style.display = "none";
         }
     }
 }
