@@ -19,7 +19,7 @@ $sql = "SELECT l.id as scan_id,
         FROM scan_logs l 
         LEFT JOIN students s ON l.student_id = s.student_id 
         ORDER BY l.timestamp DESC 
-        LIMIT 50";  // Adjust limit as needed
+        LIMIT 50"; 
 
 $result = $conn->query($sql);
 $logs = [];

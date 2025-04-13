@@ -73,12 +73,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 0;
         }
         .add-student-container {
-            max-width: 600px;
+            width: 90%;
+            max-width: 500px;
             margin: 50px auto;
             background: white;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
         }
         h2 {
             text-align: center;

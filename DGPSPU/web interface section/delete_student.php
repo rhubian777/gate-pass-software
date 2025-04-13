@@ -478,8 +478,8 @@ function filterStudents() {
         const year = row.cells[4].textContent.trim();
         
         // Check if row matches both filters
-        const matchesCourse = courseFilter === "" || course.includes(courseFilter);
-        const matchesYear = yearFilter === "" || year === yearFilter;
+        const matchesCourse = courseFilter === "" || courseFilter === "all courses" || course.includes(courseFilter);
+        const matchesYear = yearFilter === "" || yearFilter === "all years" || year === yearFilter;
         
         if (matchesCourse && matchesYear) {
             row.style.display = ""; // Show the row
@@ -492,7 +492,7 @@ function filterStudents() {
     // Show message if no results found
     const noResultsRow = document.getElementById("noResultsRow");
     if (noResultsRow) {
-        if (!resultsFound && (courseFilter !== "" || yearFilter !== "")) {
+        if (!resultsFound && (courseFilter !== "" && courseFilter !== "all courses" || yearFilter !== "" && yearFilter !== "all years")) {
             noResultsRow.style.display = "table-row";
         } else {
             noResultsRow.style.display = "none";
@@ -545,8 +545,8 @@ function searchStudents() {
             year.toLowerCase().includes(searchValue);
             
         // Check if row matches filters
-        const matchesCourse = courseFilter === "" || course.includes(courseFilter);
-        const matchesYear = yearFilter === "" || year === yearFilter;
+        const matchesCourse = courseFilter === "" || courseFilter === "all courses" || course.includes(courseFilter);
+        const matchesYear = yearFilter === "" || yearFilter === "all years" || year === yearFilter;
         
         // Show row only if it matches both search and filters
         if (matchesSearch && matchesCourse && matchesYear) {
@@ -567,6 +567,53 @@ function searchStudents() {
         }
     }
 }
+
+// Add this new function to listen for input changes on the search field
+function setupSearchListeners() {
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput) {
+        searchInput.addEventListener("input", function() {
+            // If search input is empty, show all students
+            if (this.value === "") {
+                const tableRows = document.querySelectorAll("#studentTableBody tr:not(#noResultsRow)");
+                tableRows.forEach(row => {
+                    row.style.display = "";
+                });
+                
+                // Hide no results message
+                const noResultsRow = document.getElementById("noResultsRow");
+                if (noResultsRow) {
+                    noResultsRow.style.display = "none";
+                }
+            } else {
+                // Otherwise, perform the search
+                searchStudents();
+            }
+        });
+    }
+}
+
+// Call this function when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+    setupSearchListeners();
+    
+    // Add event listeners for the filters if they exist
+    const courseFilter = document.getElementById("courseFilter");
+    const yearFilter = document.getElementById("yearFilter");
+    const resetButton = document.querySelector(".reset-filters-btn");
+    
+    if (courseFilter) {
+        courseFilter.addEventListener("change", filterStudents);
+    }
+    
+    if (yearFilter) {
+        yearFilter.addEventListener("change", filterStudents);
+    }
+    
+    if (resetButton) {
+        resetButton.addEventListener("click", resetFilters);
+    }
+});
     </script>
 </body>
 </html>
