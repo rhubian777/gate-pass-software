@@ -1,99 +1,4 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-/* Delete Student Page Styling */
-body.delete-student-page {
-  background-color: #658354;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-body.delete-student-page .container {
-  max-width: 1200px;
-  margin: 40px auto;
-  background: #a3c585;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-body.delete-student-page h2 {
-  text-align: center;
-  color: #000000;
-  margin-bottom: 25px;
-}
-
-/* Scrollable Table */
-body.delete-student-page .table-container {
-  overflow-x: auto;
-  max-height: 600px;
-  border: 1px solid #ddd;
-}
-
-body.delete-student-page table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 900px; /* ensures horizontal scroll when needed */
-}
-
-body.delete-student-page th,
-body.delete-student-page td {
-  border: 1px solid #ddd;
-  padding: 12px 16px;
-  text-align: center;
-  font-size: 15px;
-}
-
-body.delete-student-page th {
-  background-color: #87ab69;
-  color: rgb(255, 255, 255);
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-body.delete-student-page tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-body.delete-student-page button.delete-btn {
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.3s;
-}
-
-body.delete-student-page button.delete-btn:hover {
-  background-color: #c0392b;
-}
-
-/* Sticky back button */
-body.delete-student-page .back-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #2980b9;
-  color: white;
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: background-color 0.3s;
-}
-
-body.delete-student-page .back-btn:hover {
-  background-color: #2e8f14;
-}
-
+/* Base styles */
 * {
   margin: 0;
   padding: 0;
@@ -123,13 +28,16 @@ h2 {
   margin-bottom: 20px;
 }
 
+/* Table styles */
 .table-container {
   overflow-x: auto;
+  max-height: 600px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 900px; /* ensures horizontal scroll when needed */
 }
 
 th, td {
@@ -142,12 +50,16 @@ th {
   background-color: #f9f9f9;
   font-weight: bold;
   color: #333;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 tr:hover {
   background-color: #f7f7f7;
 }
 
+/* Button styles */
 .btn {
   padding: 6px 12px;
   border: none;
@@ -177,9 +89,9 @@ tr:hover {
 }
 
 .back-btn {
-  position: absolute;
-  top: 20px;
-  left: 20px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   padding: 10px 20px;
   background-color: #2196f3;
   color: white;
@@ -187,6 +99,7 @@ tr:hover {
   border-radius: 4px;
   transition: background-color 0.3s;
   font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .back-btn:hover {
@@ -235,12 +148,20 @@ tr:hover {
   font-weight: 500;
 }
 
-.form-group input {
+.form-group input, 
+.form-group select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 16px;
+  background-color: white;
+}
+
+.form-group select:focus, 
+.form-group input:focus {
+  border-color: #2196f3;
+  outline: none;
 }
 
 .submit-btn {
@@ -327,45 +248,7 @@ tr:hover {
   background-color: #0b7dda;
 }
 
-      /* Search bar styles */
-.search-container {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.search-container input {
-  width: 70%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px 0 0 4px;
-  font-size: 16px;
-}
-
-.search-container button {
-  padding: 10px 15px;
-  background-color: #2196f3;
-  color: white;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.search-container button:hover {
-  background-color: #0b7dda;
-}
-
-.form-group select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: white;
-}
-
-/*Filter */
+/* Filter styles */
 .filter-container {
   display: flex;
   flex-wrap: wrap;
@@ -399,11 +282,6 @@ tr:hover {
   cursor: pointer;
 }
 
-.filter-group select:focus {
-  border-color: #2196f3;
-  outline: none;
-}
-
 .reset-btn {
   background-color: #f44336;
   color: white;
@@ -420,36 +298,11 @@ tr:hover {
   background-color: #d32f2f;
 }
 
-@media (max-width: 768px) {
-  .filter-container {
-      flex-direction: column;
-  }
-  
-  .filter-group {
-      min-width: 100%;
-  }
-}
-
-.no-results-message {
+/* No results message */
+#noResultsRow td {
   text-align: center;
   padding: 30px;
-  margin: 20px 0;
   background-color: #f9f9f9;
-  border-radius: 8px;
-  border: 1px dashed #ddd;
-}
-
-.no-results-message i {
-  font-size: 40px;
-  color: #999;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.no-results-message p {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 15px;
 }
 
 .reset-search-btn {
@@ -460,8 +313,48 @@ tr:hover {
   padding: 8px 15px;
   cursor: pointer;
   font-weight: 500;
+  margin-top: 10px;
 }
 
 .reset-search-btn:hover {
   background-color: #0b7dda;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+  }
+  
+  .filter-group {
+    min-width: 100%;
+  }
+  
+  .container {
+    padding: 15px;
+  }
+  
+  .search-container input {
+    width: 60%;
+  }
+  
+  .modal-content {
+    width: 95%;
+    margin: 50px auto;
+  }
+}
+
+/* Accessibility improvements */
+button:focus, 
+input:focus, 
+select:focus, 
+a:focus {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
+
+/* Style for highlighted updated rows */
+.highlight-row {
+  background-color: #d4edda !important;
+  transition: background-color 1s;
 }

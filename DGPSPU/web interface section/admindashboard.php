@@ -169,12 +169,13 @@ $result = $conn->query($sql);
             gap: 20px;
         }
         .admin-list, .add-admin {
-            flex: 1;
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        flex: 1;
+        background: linear-gradient(to right, #a8e063, #56ab2f);
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -185,7 +186,7 @@ $result = $conn->query($sql);
             border-bottom: 1px solid #ddd;
         }
         th {
-            background-color: #f2f2f2;
+         background: linear-gradient(to left,rgb(10, 119, 6),rgb(165, 255, 124));
         }
         .form-group {
             margin-bottom: 15px;
@@ -236,7 +237,7 @@ $result = $conn->query($sql);
         </div>
         
         <div class="welcome-message">
-            <p>Welcome, <b><?php echo htmlspecialchars($_SESSION["admin_email"]); ?></b>. Manage your RFID gate system below.</p>
+            <p>Welcome, <b><?php echo htmlspecialchars($_SESSION["admin_email"]); ?></b>. Manage your Admin System below.</p>
         </div>
         
         <div class="admin-panel">

@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 90%;
             max-width: 500px;
             margin: 50px auto;
-            background: white;
+            background: linear-gradient(to left,rgb(10, 119, 6),rgb(165, 255, 124));
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
