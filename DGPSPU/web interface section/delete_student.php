@@ -182,7 +182,7 @@ if (!$result) {
         </div>
     </div>
 
-    <!-- Fixed Back to Home Button -->
+    <!-- Back to Home Button -->
     <a href="index.php" class="back-btn" aria-label="Back to Home">← Back to Home</a>
     
     <script>

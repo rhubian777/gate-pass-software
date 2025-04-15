@@ -54,7 +54,8 @@ $yearData = $conn->query("SELECT year, COUNT(*) as count FROM students GROUP BY 
   <button id="menu-btn">☰</button>
   <div class="container">
     <img src="../logos/pu_logo.png" alt="Logo" class="top-centerlogo"/>
-      <!-- Dashboard Container -->
+     
+    <!-- Dashboard Container -->
     <div class="dashboard-container">
       <div class="dashboard-card">
         <h2>STUDENT DASHBOARD</h2>
@@ -351,11 +352,14 @@ window.onload = function() {
   loadRecentActivity();
   initCharts();
   
-  // Toggle sidebar
-  document.getElementById('menu-btn').addEventListener('click', function() {
-    document.getElementById('sidebar').classList.toggle('show');
-  });
-  
+// Toggle sidebar
+document.getElementById('menu-btn').addEventListener('click', function() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('show');
+
+  // Animate the menu button (optional)
+  this.classList.toggle('active');
+});
   // Refresh data every 30 seconds
   setInterval(loadLogs, 5000); // Refresh logs every 5 seconds
   setInterval(loadRecentActivity, 30000); // Refresh activity every 30 seconds

@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #008B8B;
+  background: linear-gradient(to right, #008B8B, #20B2AA);
   padding: 20px;
 }
 

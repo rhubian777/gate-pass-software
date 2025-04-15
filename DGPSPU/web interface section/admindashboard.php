@@ -113,7 +113,8 @@ $result = $conn->query($sql);
     <title>Admin Dashboard - RFID Gate System</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family:'Times New Roman', serif;
+            font-size: 19px;
             background-color:rgb(36, 168, 58);
             margin: 0;
             padding: 0;
@@ -209,7 +210,8 @@ $result = $conn->query($sql);
             color: white;
             border: none;
             padding: 10px 15px;
-            font-size: 16px;
+            font-family:'Times New Roman', serif;
+            font-size: 19px;
             cursor: pointer;
             border-radius: 4px;
         }

@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family:'Times New Roman', serif;   
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 90%;
             max-width: 500px;
             margin: 50px auto;
-            background: linear-gradient(to left,rgb(10, 119, 6),rgb(165, 255, 124));
+            background: linear-gradient(to left,rgb(66, 201, 61),hsl(101, 60.20%, 32.50%));
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -100,6 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-bottom: 20px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            font-family:'Times New Roman', serif;
             font-size: 16px;
         }
         .register-btn {
@@ -107,7 +108,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: white;
             border: none;
             padding: 12px;
-            font-size: 16px;
+            font-size: 19px;
+            font-family:'Times New Roman', serif;
             border-radius: 4px;
             cursor: pointer;
             margin-bottom: 15px;
@@ -120,7 +122,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: white;
             border: none;
             padding: 12px;
-            font-size: 16px;
+            font-family:'Times New Roman', serif;
+            font-size: 19px;
             border-radius: 4px;
             cursor: pointer;
             text-align: center;
@@ -130,6 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .back-btn:hover {
             background-color: #0b7dda;
         }
+        
     </style>
 </head>
 <body>
@@ -229,6 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             text-decoration: none;
             padding: 14px 20px;
             display: inline-block;
+            font-family:'Times New Roman', serif;
             font-size: 16px;
             transition: 0.3s ease-in-out;
             background-color: #28a745;
