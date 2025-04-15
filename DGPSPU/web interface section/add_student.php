@@ -94,6 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         label {
             margin-bottom: 8px;
             font-weight: bold;
+            font-size: 18px;
         }
         input, select {
             padding: 12px;
@@ -101,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border: 1px solid #ddd;
             border-radius: 4px;
             font-family:'Times New Roman', serif;
-            font-size: 16px;
+            font-size: 17px;
         }
         .register-btn {
             background-color: #4CAF50;
@@ -234,7 +235,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 14px 20px;
             display: inline-block;
             font-family:'Times New Roman', serif;
-            font-size: 16px;
+            font-size: 19px;
             transition: 0.3s ease-in-out;
             background-color: #28a745;
             border-radius: 8px;

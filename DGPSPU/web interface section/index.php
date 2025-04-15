@@ -101,53 +101,51 @@ $yearData = $conn->query("SELECT year, COUNT(*) as count FROM students GROUP BY 
     </tbody>
   </table>
 </div>
- <!-- Dev team -->
+ 
+<!-- Dev team -->
 <div style="margin-top: 30px; padding: 25px 15px; border-radius: 8px; text-align: center;">
   <h3 style="text-align: center; margin-bottom: 25px; font-size: 24px; font-weight: bold; color: white;">MEET THE DEV TEAM</h3>
-
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
 
     <!-- Member 1 -->
-    <div style="display: flex; flex-direction: column; align-items: center; width: 200px; border: 2px solid #B31217; border-radius: 15px; padding: 15px; background-color: #161616; box-shadow: 0 0 10px #B31217; position: relative; overflow: hidden;">
-      <img src="../logos/profile1.png" alt="Member 1" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #1E90FF; box-shadow: 0 0 15px #1E90FF; z-index: 1; position: relative;">
-      <h4 style="margin: 0 0 5px 0; font-size: 15px; font-weight: bold; color: #D4AF37; text-shadow: 0 0 5px #D4AF37; z-index: 1;">Chrismar Jose Ganzagan</h4>
-      <p style="margin: 0 0 10px 0; font-size: 14px; color: #1E90FF; text-shadow: 0 0 3px #1E90FF; letter-spacing: 1px; z-index: 1;">Lead Developer</p>
-      <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px; z-index: 1;">
-        <a href="https://www.facebook.com/JJHXCJG" target="_blank">
-          <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
-        </a>
-      </div>
+  <div style="display: flex; flex-direction: column; align-items: center; width: 200px; border-radius: 15px; padding: 15px; background: linear-gradient(to right, #a8e063, #56ab2f); position: relative; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <img src="../logos/profile1.png" alt="Member 1" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #ffffff; z-index: 1; position: relative;">
+    <h4 style="margin: 0 0 5px 0; font-size: 16px; font-weight: bold; color:rgb(0, 0, 0); z-index: 1;">Chrismar Jose Ganzagan</h4>
+    <p style="margin: 0 0 10px 0; font-size: 16px; color: rgb(255, 255, 255); letter-spacing: 1px; z-index: 1;">Lead Developer</p>
+    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px; z-index: 1;">
+      <a href="https://www.facebook.com/JJHXCJG" target="_blank">
+        <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
+      </a>
     </div>
+  </div>
 
-    <!-- Member 2 -->
-    <div style="display: flex; flex-direction: column; align-items: center; width: 200px; border: 2px solid #B31217; border-radius: 15px; padding: 15px; background-color: #161616; box-shadow: 0 0 10px #B31217; position: relative; overflow: hidden;">
-      <img src="../logos/profile2.png" alt="Member 2" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #1E90FF; box-shadow: 0 0 15px #1E90FF; z-index: 1; position: relative;">
-      <h4 style="margin: 0 0 5px 0; font-size: 15px; font-weight: bold; color: #D4AF37; text-shadow: 0 0 5px #D4AF37; z-index: 1;">Carlitos Avel Caoayan</h4>
-      <p style="margin: 0 0 10px 0; font-size: 14px; color: #1E90FF; text-shadow: 0 0 3px #1E90FF; letter-spacing: 1px; z-index: 1;">Pancit Canton Chilimansi Developer</p>
-      <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px; z-index: 1;">
-        <a href="https://www.facebook.com/Toshiibonks" target="_blank">
-          <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
-        </a>
-        <a href="https://www.instagram.com/toshirouuuuu?igsh=MWN6ZDd2MGNiZW40&utm_source=qr&fbclid=IwY2xjawJbAOBleHRuA2FlbQIxMAABHeGtJt1BGzWFZdka9bUc94PhZSd0jTKOQz0FWtu4rAvnnKV3hO5lmSC_nw_aem_iLkzQPF_TNnFw4Xe4Po8wA" target="_blank">
-          <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
-        </a>
-      </div>
+  <!-- Member 2 -->
+  <div style="display: flex; flex-direction: column; align-items: center; width: 200px; border-radius: 15px; padding: 15px; background: linear-gradient(to right, #a8e063, #56ab2f); position: relative; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <img src="../logos/profile2.png" alt="Member 2" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #ffffff; z-index: 1; position: relative;">
+    <h4 style="margin: 0 0 5px 0; font-size: 16px; font-weight: bold; color:rgb(0, 0, 0); z-index: 1;">Carlitos Avel Caoayan</h4>
+    <p style="margin: 0 0 10px 0; font-size: 16px; color: rgb(255, 255, 255); letter-spacing: 1px; z-index: 1;">Pancit Canton Chilimansi Developer</p>
+    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px; z-index: 1;">
+      <a href="https://www.facebook.com/Toshiibonks" target="_blank">
+        <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
+      </a>
+      <a href="https://www.instagram.com/toshirouuuuu?igsh=MWN6ZDd2MGNiZW40&utm_source=qr&fbclid=IwY2xjawJbAOBleHRuA2FlbQIxMAABHeGtJt1BGzWFZdka9bUc94PhZSd0jTKOQz0FWtu4rAvnnKV3hO5lmSC_nw_aem_iLkzQPF_TNnFw4Xe4Po8wA" target="_blank">
+        <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
+      </a>
     </div>
+  </div>
 
-    <!-- Member 3 -->
-    <div style="display: flex; flex-direction: column; align-items: center; width: 200px; border: 2px solid #B31217; border-radius: 15px; padding: 15px; background-color: #161616; box-shadow: 0 0 10px #B31217; position: relative; overflow: hidden;">
-      <img src="../logos/profile3.png" alt="Member 3" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #1E90FF; box-shadow: 0 0 15px #1E90FF; z-index: 1; position: relative;">
-      <h4 style="margin: 0 0 5px 0; font-size: 15px; font-weight: bold; color: #D4AF37; text-shadow: 0 0 5px #D4AF37; z-index: 1;">Jonray Dale Manzano</h4>
-      <p style="margin: 0 0 10px 0; font-size: 14px; color: #1E90FF; text-shadow: 0 0 3px #1E90FF; letter-spacing: 1px; z-index: 1;">Gago lang</p>
-      <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px; z-index: 1;">
-        <a href="https://www.facebook.com/kampitsss?rdid=k5E9kQ6T8V64LZL1&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AH9Fe1DEZ#" target="_blank">
-          <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
-        </a>
-        <a href="https://www.instagram.com/kampitsss?igsh=OHZhZ3Jia3FobHNt&fbclid=IwY2xjawJbAMZleHRuA2FlbQIxMAABHZsLUCcoPC4vPGY5nzw8dVC0q-ioswcbdXhwyC9d95GjJC3jMnH0fXrrDg_aem_b8iahoyExpyQuS_AXg8Fxw" target="_blank">
-          <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
-        </a>
-        </div>
-      </div>
+  <!-- Member 3 -->
+  <div style="display: flex; flex-direction: column; align-items: center; width: 200px; border-radius: 15px; padding: 15px; background: linear-gradient(to right, #a8e063, #56ab2f); position: relative; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <img src="../logos/profile3.png" alt="Member 3" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #ffffff; z-index: 1; position: relative;">
+    <h4 style="margin: 0 0 5px 0; font-size: 16px; font-weight: bold; color:rgb(0, 0, 0); z-index: 1;">Jonray Dale Manzano</h4>
+    <p style="margin: 0 0 10px 0; font-size: 16px; color: rgb(255, 255, 255); letter-spacing: 1px; z-index: 1;">Gago lang</p>
+    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px; z-index: 1;">
+      <a href="https://www.facebook.com/kampitsss?rdid=k5E9kQ6T8V64LZL1&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AH9Fe1DEZ#" target="_blank">
+        <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px; margin-right: 5px;">
+      </a>
+      <a href="https://www.instagram.com/kampitsss?igsh=OHZhZ3Jia3FobHNt&fbclid=IwY2xjawJbAMZleHRuA2FlbQIxMAABHZsLUCcoPC4vPGY5nzw8dVC0q-ioswcbdXhwyC9d95GjJC3jMnH0fXrrDg_aem_b8iahoyExpyQuS_AXg8Fxw" target="_blank">
+        <img src="../logos/instagram_logo.png" alt="Instagram" style="width: 20px; height: 20px; margin-right: 5px;">
+      </a>
     </div>
   </div>
 
@@ -209,26 +207,26 @@ function toggleLogs() {
   }
 }
 
-// Auto-refresh scan logs
-function loadLogs() {
-  fetch('load_logs.php')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('scan-logs-table-body').innerHTML = data;
-    })
-    .catch(error => {
-      document.getElementById('scan-logs-table-body').innerHTML =
-        '<tr><td colspan="5">Failed to load scan logs.</td></tr>';
-      console.error('Error loading logs:', error);
-    });
+  // Auto-refresh scan logs
+  function loadLogs() {
+    fetch('load_logs.php')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('scan-logs-table-body').innerHTML = data;
+      })
+      .catch(error => {
+        document.getElementById('scan-logs-table-body').innerHTML =
+          '<tr><td colspan="5">Failed to load scan logs.</td></tr>';
+        console.error('Error loading logs:', error);
+      });
 }
 
-// Load recent activity
-// Change this line in your JavaScript
-function fetchLatestScan() {
-  fetch('get_latest_scans.php')  // Changed from get_latest_scan.php to get_latest_scans.php
-    .then(response => {
-     
+  // Load recent activity
+  // Change this line in your JavaScript
+  function fetchLatestScan() {
+    fetch('get_latest_scans.php')  // Changed from get_latest_scan.php to get_latest_scans.php
+      .then(response => {
+      
       const activityList = document.getElementById('recent-activity-list');
       activityList.innerHTML = '';
       
@@ -272,9 +270,9 @@ function formatTimeAgo(date) {
   return `${days} day${days > 1 ? 's' : ''} ago`;
 }
 
-// Initialize charts with PHP data
-function initCharts() {
-  // Course chart
+  // Initialize charts with PHP data
+  function initCharts() {
+    // Course chart
   const courseCtx = document.getElementById('courseChart').getContext('2d');
   const courseChart = new Chart(courseCtx, {
     type: 'pie',
@@ -346,56 +344,56 @@ function initCharts() {
   });
 }
 
-// Initialize everything on page load
-window.onload = function() {
-  loadLogs();
-  loadRecentActivity();
-  initCharts();
-  
-// Toggle sidebar
-document.getElementById('menu-btn').addEventListener('click', function() {
-  const sidebar = document.getElementById('sidebar');
-  sidebar.classList.toggle('show');
+  // Initialize everything on page load
+  window.onload = function() {
+    loadLogs();
+    loadRecentActivity();
+    initCharts();
+    
+  // Toggle sidebar
+  document.getElementById('menu-btn').addEventListener('click', function() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('show');
 
-  // Animate the menu button (optional)
-  this.classList.toggle('active');
-});
-  // Refresh data every 30 seconds
-  setInterval(loadLogs, 5000); // Refresh logs every 5 seconds
-  setInterval(loadRecentActivity, 30000); // Refresh activity every 30 seconds
-};
+    // Animate the menu button (optional)
+    this.classList.toggle('active');
+  });
+    // Refresh data every 30 seconds
+    setInterval(loadLogs, 5000); // Refresh logs every 5 seconds
+    setInterval(loadRecentActivity, 30000); // Refresh activity every 30 seconds
+  };
 
-  </script>
-    <script>
-// Global variable to track the most recent scan ID to avoid duplicates
-let lastProcessedScanId = null;
+    </script>
+      <script>
+  // Global variable to track the most recent scan ID to avoid duplicates
+  let lastProcessedScanId = null;
 
-// Function to update the dashboard with student details
-function updateDashboard(studentData) {
-  console.log("Updating dashboard with:", studentData);
-  
-  document.getElementById('student-id').textContent = studentData.student_id || 'Unknown';
-  document.getElementById('student-name').textContent = studentData.name || 'Unknown';
-  document.getElementById('student-course').textContent = studentData.course || 'N/A';
-  document.getElementById('student-year').textContent = studentData.year || 'N/A';
-  document.getElementById('scan-time').textContent = studentData.formatted_time || new Date().toLocaleString();
-  
-  // Show scan status
-  const scanStatus = document.getElementById('scan-status');
-  scanStatus.textContent = 'Scan Successful!';
-  scanStatus.className = 'success';
-  
-  // Clear the status after 3 seconds
-  setTimeout(() => {
-    scanStatus.textContent = '';
-    scanStatus.className = '';
-  }, 3000);
-}
+  // Function to update the dashboard with student details
+  function updateDashboard(studentData) {
+    console.log("Updating dashboard with:", studentData);
+    
+    document.getElementById('student-id').textContent = studentData.student_id || 'Unknown';
+    document.getElementById('student-name').textContent = studentData.name || 'Unknown';
+    document.getElementById('student-course').textContent = studentData.course || 'N/A';
+    document.getElementById('student-year').textContent = studentData.year || 'N/A';
+    document.getElementById('scan-time').textContent = studentData.formatted_time || new Date().toLocaleString();
+    
+    // Show scan status
+    const scanStatus = document.getElementById('scan-status');
+    scanStatus.textContent = 'Scan Successful!';
+    scanStatus.className = 'success';
+    
+    // Clear the status after 3 seconds
+    setTimeout(() => {
+      scanStatus.textContent = '';
+      scanStatus.className = '';
+    }, 3000);
+  }
 
-// Function to check for new scans
-function checkForNewScans() {
-  console.log("Checking for new scans...");
-  
+  // Function to check for new scans
+  function checkForNewScans() {
+    console.log("Checking for new scans...");
+    
   fetch('get_latest_scan.php')
     .then(response => {
       console.log("Response status:", response.status);
@@ -432,11 +430,11 @@ function checkForNewScans() {
     });
 }
 
-// Poll for new scans every 2 seconds
-setInterval(checkForNewScans, 2000);
+  // Poll for new scans every 2 seconds
+  setInterval(checkForNewScans, 2000);
 
-// Also check immediately when the page loads
-document.addEventListener('DOMContentLoaded', checkForNewScans);
+  // Also check immediately when the page loads
+  document.addEventListener('DOMContentLoaded', checkForNewScans);
 
     </script>
   <script>
@@ -498,11 +496,11 @@ function updateDashboardWithTimes(studentData) {
   }, 3000);
 }
 
-// Replace your existing interval with this:
-setInterval(checkForInOutTimes, 2000);
+  // Replace your existing interval with this:
+  setInterval(checkForInOutTimes, 2000);
 
-// Also check immediately when the page loads
-document.addEventListener('DOMContentLoaded', checkForInOutTimes);
+  // Also check immediately when the page loads
+  document.addEventListener('DOMContentLoaded', checkForInOutTimes);
 </script>
 </body>
 </html>

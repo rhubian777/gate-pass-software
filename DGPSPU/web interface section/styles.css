@@ -1,5 +1,5 @@
   body {
-    font-family: Arial, sans-serif;
+    font-family:'Times New Roman', serif;
     background: url("../logos/PU_image.jpg") no-repeat center center fixed;
     background-size: cover;
     margin: 0;
@@ -47,6 +47,7 @@
   /* Student Details */
   .student-container {
     background-color: green;
+    font-family:'Times New Roman', serif;
     padding: 15px;
     color: white;
     border-radius: 15px;
@@ -191,6 +192,8 @@
   background: linear-gradient(to right, #26b805, #399414);
   color: #ffffff;
   font-weight: normal;
+  font-size: 16px;
+  font-family:'Times New Roman', serif;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
@@ -311,7 +314,7 @@
     align-items: center;
     width: 200px;
     padding: 15px;
-    background-color: rgba(255, 255, 255, 0.05);
+     background: linear-gradient(to left,rgb(66, 201, 61),hsl(101, 60.20%, 32.50%));
     border-radius: 10px;
     transition: transform 0.3s ease;
   }

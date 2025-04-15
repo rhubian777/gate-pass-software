@@ -1,28 +1,43 @@
-/* Base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 body {
   background: linear-gradient(to right, #008B8B, #20B2AA);
+  font-family:'Times New Roman', serif;
+  font-size: 17px;
   padding: 20px;
 }
 
 .container {
-  max-width: 1000px;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
   margin: 0 auto;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  padding: 25px;
+  box-sizing: border-box;
+}
+
+/* Optional: Add a max-width for large screens to center content */
+@media (min-width: 768px) {
+  .container {
+    max-width: 1000px;
+    padding: 40px;
+    border-radius: 12px;
+  }
+}
+
+/* Optional: Tweak padding for small screens */
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+    border-radius: 6px;
+  }
 }
 
 h2 {
   color: #333;
   text-align: center;
+  font-family:'Times New Roman', serif;
+  font-size: 18px;
   padding-bottom: 20px;
   border-bottom: 1px solid #eee;
   margin-bottom: 20px;
@@ -37,7 +52,7 @@ h2 {
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 900px; /* ensures horizontal scroll when needed */
+  min-width: 900px;
 }
 
 th, td {
@@ -66,6 +81,7 @@ tr:hover {
   border-radius: 4px;
   cursor: pointer;
   font-weight: 500;
+  font-family:'Times New Roman', serif;
   transition: all 0.3s;
 }
 
@@ -291,6 +307,7 @@ tr:hover {
   cursor: pointer;
   align-self: flex-end;
   font-weight: 500;
+  font-family:'Times New Roman', serif;
   transition: background-color 0.3s;
 }
 
