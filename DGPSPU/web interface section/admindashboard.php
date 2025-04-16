@@ -171,7 +171,7 @@ $result = $conn->query($sql);
         }
         .admin-list, .add-admin {
         flex: 1;
-        background: linear-gradient(to right, #a8e063, #56ab2f);
+        background: linear-gradient(to right,rgb(98, 179, 0),rgb(107, 210, 60));
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -187,7 +187,7 @@ $result = $conn->query($sql);
             border-bottom: 1px solid #ddd;
         }
         th {
-         background: linear-gradient(to left,rgb(10, 119, 6),rgb(165, 255, 124));
+         background: linear-gradient(to right,rgb(180, 211, 0),rgb(165, 255, 124));
         }
         .form-group {
             margin-bottom: 15px;

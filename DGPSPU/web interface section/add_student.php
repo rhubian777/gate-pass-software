@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: white;
             border: none;
             padding: 12px;
-            font-size: 19px;
+            font-size: 18px;
             font-family:'Times New Roman', serif;
             border-radius: 4px;
             cursor: pointer;
@@ -119,20 +119,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-color: #45a049;
         }
         .back-btn {
-            background-color: #2196F3;
+            background-color: #4CAF50; /* Green background color */
             color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-family:'Times New Roman', serif; 
             border: none;
-            padding: 12px;
-            font-family:'Times New Roman', serif;
-            font-size: 19px;
             border-radius: 4px;
             cursor: pointer;
+            width: 100%;
             text-align: center;
-            text-decoration: none;
-            display: block;
+            margin-bottom: 10px;
+            text-decoration: none; /* In case the back button is an <a> element */
+            display: inline-block;
         }
         .back-btn:hover {
-            background-color: #0b7dda;
+            background-color: #45a049;
         }
         
     </style>
@@ -140,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <div class="add-student-container">
-        <h2>Add New Student</h2>
+        <h2>ADD NEW STUDENT</h2>
 
         <?php if (!empty($error_message)): ?>
         <script>
