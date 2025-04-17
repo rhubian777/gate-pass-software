@@ -1,4 +1,4 @@
-    <?php
+<?php
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json");
 
@@ -28,25 +28,47 @@
         $student = $result->fetch_assoc();
         $student_id = $student['student_id'];
         
-        // After you find the student and before inserting the scan
-        // Check the last scan type for this student
-        $last_scan_sql = "SELECT scan_type FROM scan_logs 
-                        WHERE student_id = ? 
-                        ORDER BY timestamp DESC 
-                        LIMIT 1";
-        $last_scan_stmt = $conn->prepare($last_scan_sql);
-        $last_scan_stmt->bind_param("s", $student_id);
-        $last_scan_stmt->execute();
-        $last_scan_result = $last_scan_stmt->get_result();
-        $scan_type = "IN"; // Default to IN
-        if ($last_scan_result->num_rows > 0) {
-            $last_scan = $last_scan_result->fetch_assoc();
-            // Toggle the scan type
-            $scan_type = ($last_scan['scan_type'] == "IN" || $last_scan['scan_type'] == NULL) ? "OUT" : "IN";
-        }
-        $last_scan_stmt->close();
+        // Check if this student has a recent scan today
+        $today = date('Y-m-d');
+        $check_duplicate_sql = "SELECT id, scan_type FROM scan_logs 
+                              WHERE student_id = ? 
+                              AND DATE(timestamp) = ?
+                              ORDER BY timestamp DESC 
+                              LIMIT 1";
+        $check_duplicate_stmt = $conn->prepare($check_duplicate_sql);
+        $check_duplicate_stmt->bind_param("ss", $student_id, $today);
+        $check_duplicate_stmt->execute();
+        $duplicate_result = $check_duplicate_stmt->get_result();
         
-        // Modify your INSERT statement to include scan_type
+        if ($duplicate_result->num_rows > 0) {
+            $last_scan = $duplicate_result->fetch_assoc();
+            $scan_type = ($last_scan['scan_type'] == "IN") ? "OUT" : "IN";
+            
+            // Check if the last scan was too recent (duplicate prevention)
+            $recent_scan_sql = "SELECT COUNT(*) as count FROM scan_logs 
+                              WHERE student_id = ? 
+                              AND timestamp > DATE_SUB(NOW(), INTERVAL 2 MINUTE)";
+            $recent_scan_stmt = $conn->prepare($recent_scan_sql);
+            $recent_scan_stmt->bind_param("s", $student_id);
+            $recent_scan_stmt->execute();
+            $recent_result = $recent_scan_stmt->get_result();
+            $recent_count = $recent_result->fetch_assoc()['count'];
+            $recent_scan_stmt->close();
+            
+            if ($recent_count > 0) {
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "Duplicate scan detected. Please wait before scanning again."
+                ]);
+                exit;
+            }
+        } else {
+            // No scan found today, this is the first scan of the day
+            $scan_type = "IN"; // Default the first scan of the day to IN
+        }
+        $check_duplicate_stmt->close();
+        
+        // Insert the new scan
         $insert_stmt = $conn->prepare("INSERT INTO scan_logs (student_id, timestamp, scan_type) VALUES (?, NOW(), ?)");
         $insert_stmt->bind_param("ss", $student_id, $scan_type);
         
@@ -80,4 +102,4 @@
 
     $stmt->close();
     $conn->close();
-    ?>
+?>

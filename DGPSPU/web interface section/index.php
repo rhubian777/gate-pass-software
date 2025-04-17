@@ -160,6 +160,7 @@ $dashboardStats = getDashboardStats();
             <th>Time</th>
             <th>Year</th>
             <th>Course</th>
+            <th>STATUS</th>
           </tr>
         </thead>
         <tbody id="logs-table"></tbody>
