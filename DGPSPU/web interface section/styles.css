@@ -534,4 +534,84 @@ input:focus, select:focus, textarea:focus {
   border: 1px solid #bee5eb;
 }
 
+/* Search and filter styling */
+.search-filter-container {
+  margin: 15px 0;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-box {
+  display: flex;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.advanced-filters {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.filter-group label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.filter-group input,
+.filter-group select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#clear-search-btn {
+  background-color: #f44336;
+}
+
+#clear-search-btn:hover {
+  background-color: #d32f2f;
+}
 

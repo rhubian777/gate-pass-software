@@ -121,7 +121,7 @@ $dashboardStats = getDashboardStats();
   
   <div class="container">
     <img src="../logos/pu_logo.png" alt="PU Logo" class="top-centerlogo"/>
-     
+
     <!-- Dashboard Container -->
     <div class="dashboard-container">
       <div class="dashboard-card">
@@ -152,6 +152,54 @@ $dashboardStats = getDashboardStats();
     <!-- Scan Logs -->
     <div class="log-container" id="logs-container">
       <div class="log-title">SCAN LOGS</div>
+      
+      <div class="search-filter-container">
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Search by ID or name...">
+            <button id="search-btn">Search</button>
+            <button id="clear-search-btn">Clear</button>
+        </div>
+        <div class="advanced-filters">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="date-from">From:</label>
+                    <input type="date" id="date-from">
+                </div>
+                <div class="filter-group">
+                    <label for="date-to">To:</label>
+                    <input type="date" id="date-to">
+                </div>
+                <div class="filter-group">
+                    <label for="course-filter">Course:</label>
+                    <select id="course-filter">
+                        <option value="">All Courses</option>
+                        <option value="BSIT">BSIT</option>
+                        <!-- Add more course options as needed -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="year-filter">Year:</label>
+                    <select id="year-filter">
+                        <option value="">All Years</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="status-filter">Status:</label>
+                    <select id="status-filter">
+                        <option value="">All</option>
+                        <option value="IN">IN</option>
+                        <option value="OUT">OUT</option>
+                    </select>
+                </div>
+            </div>
+            <button id="apply-filters-btn">Apply Filters</button>
+        </div>
+      </div>
+      
       <table>
         <thead>
           <tr>
@@ -166,7 +214,7 @@ $dashboardStats = getDashboardStats();
         <tbody id="logs-table"></tbody>
       </table>
     </div>
-    
+
     <!-- Dev team -->
     <div class="dev-team-section">
       <h3>MEET THE DEV TEAM</h3>
@@ -320,6 +368,7 @@ function toggleLogs() {
               <td>${log.timestamp || 'N/A'}</td>
               <td>${log.year || 'N/A'}</td>
               <td>${log.course || 'N/A'}</td>
+              <td><span class="status-${(log.scan_type || 'unknown').toLowerCase()}">${log.scan_type || 'N/A'}</span></td>
             `;
             logsTable.appendChild(row);
           });
@@ -453,6 +502,134 @@ function updateTimeInOut(studentData) {
       scanStatus.className = '';
     }, 3000);
   }
+}
+
+// Search and filter functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize search and filter elements
+    const searchBtn = document.getElementById('search-btn');
+    const clearSearchBtn = document.getElementById('clear-search-btn');
+    const applyFiltersBtn = document.getElementById('apply-filters-btn');
+    
+    // Search button click event
+    if (searchBtn) {
+        searchBtn.addEventListener('click', function() {
+            performSearch();
+        });
+    }
+    
+    // Clear search button click event
+    if (clearSearchBtn) {
+        clearSearchBtn.addEventListener('click', function() {
+            clearSearch();
+        });
+    }
+    
+    // Apply filters button click event
+    if (applyFiltersBtn) {
+        applyFiltersBtn.addEventListener('click', function() {
+            performSearch();
+        });
+    }
+    
+    // Allow search on enter key press
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    }
+});
+
+// Perform search with all filters
+function performSearch() {
+    const searchTerm = document.getElementById('search-input').value.trim();
+    const dateFrom = document.getElementById('date-from').value;
+    const dateTo = document.getElementById('date-to').value;
+    const course = document.getElementById('course-filter').value;
+    const year = document.getElementById('year-filter').value;
+    const status = document.getElementById('status-filter').value;
+    
+    // Build query string
+    let queryParams = [];
+    if (searchTerm !== '') queryParams.push(`search=${encodeURIComponent(searchTerm)}`);
+    if (dateFrom !== '') queryParams.push(`date_from=${encodeURIComponent(dateFrom)}`);
+    if (dateTo !== '') queryParams.push(`date_to=${encodeURIComponent(dateTo)}`);
+    if (course !== '') queryParams.push(`course=${encodeURIComponent(course)}`);
+    if (year !== '') queryParams.push(`year=${encodeURIComponent(year)}`);
+    if (status !== '') queryParams.push(`status=${encodeURIComponent(status)}`);
+    
+    const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
+    
+    // Fetch search results
+    fetch(`search_logs.php${queryString}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            updateLogsTable(data);
+        })
+        .catch(error => {
+            console.error('Error searching logs:', error);
+            document.getElementById('logs-table').innerHTML = 
+                '<tr><td colspan="6">Error searching logs. Please try again.</td></tr>';
+        });
+}
+
+// Clear search inputs and reset to default view
+function clearSearch() {
+    // Clear input fields
+    document.getElementById('search-input').value = '';
+    document.getElementById('date-from').value = '';
+    document.getElementById('date-to').value = '';
+    document.getElementById('course-filter').value = '';
+    document.getElementById('year-filter').value = '';
+    document.getElementById('status-filter').value = '';
+    
+    // Reset to default view
+    fetch('fetch_logs.php')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            updateLogsTable(data);
+        })
+        .catch(error => {
+            console.error('Error fetching logs:', error);
+        });
+}
+
+// Update logs table with search results
+function updateLogsTable(data) {
+    const logsTable = document.getElementById('logs-table');
+    
+    // Clear current table content
+    logsTable.innerHTML = '';
+    
+    if (data && data.length > 0) {
+        data.forEach(log => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${log.student_id || 'N/A'}</td>
+                <td>${log.name || 'Unknown Student'}</td>
+                <td>${log.timestamp || 'N/A'}</td>
+                <td>${log.year || 'N/A'}</td>
+                <td>${log.course || 'N/A'}</td>
+                <td><span class="status-${(log.scan_type || 'unknown').toLowerCase()}">${log.scan_type || 'N/A'}</span></td>
+            `;
+            logsTable.appendChild(row);
+        });
+    } else {
+        logsTable.innerHTML = '<tr><td colspan="6">No matching records found.</td></tr>';
+    }
 }
   </script>
 </body>

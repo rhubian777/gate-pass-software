@@ -12,6 +12,7 @@ if ($conn->connect_error) {
 $sql = "SELECT l.id as scan_id, 
                l.student_id, 
                l.timestamp, 
+               l.scan_type,  /* Added this line to include the status */
                s.name, 
                s.course, 
                s.year,
