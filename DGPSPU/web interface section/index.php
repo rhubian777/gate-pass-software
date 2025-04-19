@@ -102,6 +102,7 @@ $dashboardStats = getDashboardStats();
   <!-- Sidebar Menu -->
   <div class="sidebar" id="sidebar">
     <div class="menu-container">
+
       <!-- Logo -->
       <a href="https://www.panpacificu.edu.ph/" target="_blank">
         <img src="../logos/panpacific_logo.png" alt="Panpacific University Logo" class="sidebar-logo"/>
@@ -172,9 +173,26 @@ $dashboardStats = getDashboardStats();
                 <div class="filter-group">
                     <label for="course-filter">Course:</label>
                     <select id="course-filter">
-                        <option value="">All Courses</option>
-                        <option value="BSIT">BSIT</option>
-                        <!-- Add more course options as needed -->
+                    <option value="">All Courses</option>
+                    <option value="BSIT">Bachelor of Science in Information Technology</option>
+                    <option value="BSN">Bachelor of Science in Nursing</option>
+                    <option value="BSP">Bachelor of Science in Pharmacy</option>
+                    <option value="BSCS">Bachelor of Science in Computer Science</option>
+                    <option value="BSCE">Bachelor of Science in Computer Engineering</option>
+                    <option value="BSEE">Bachelor of Science in Electrical Engineering</option>
+                    <option value="BSECE">Bachelor of Science in Electronics Engineering</option>
+                    <option value="BSCE">Bachelor of Science in Civil Engineering</option>
+                    <option value="BSA">Bachelor of Science in Accountancy</option>
+                    <option value="BSBA">Bachelor of Science in Business Administration</option>
+                    <option value="BSHM">Bachelor of Science in Hospitality Management</option>
+                    <option value="BSTM">Bachelor of Science in Tourism Management</option>
+                    <option value="BAP">Bachelor of Arts in Psychology</option>
+                    <option value="BEE">Bachelor of Elementary Education</option>
+                    <option value="BPA">Bachelor of Public Administration</option>
+                    <option value="BPE">Bachelor of Physical Education</option>
+                    <option value="BSE">Bachelor of Secondary Education</option>
+                    <option value="BSC">Bachelor of Science in Criminology</option>
+                    <option value="BSMT">Bachelor of Science in Marine Transportation</option>>
                     </select>
                 </div>
                 <div class="filter-group">
@@ -227,7 +245,7 @@ $dashboardStats = getDashboardStats();
           </div>
           <div class="member-info">
             <h4>Chrismar Jose Ganzagan</h4>
-            <p>Lead Developer</p>
+            <p>What's up Homie, I'm tony</p>
             <div class="social-links">
               <a href="https://www.facebook.com/JJHXCJG" target="_blank">
                 <img src="../logos/facebook_logo.png" alt="Facebook" style="width: 20px; height: 20px;">
